@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/topborder1"
-        android:layout_width="417dp"
-        android:layout_height="34dp"
+        android:layout_width="416dp"
+        android:layout_height="67dp"
         android:background="#448AFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"

@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/logintopborder"
-        android:layout_width="417dp"
-        android:layout_height="34dp"
+        android:layout_width="411dp"
+        android:layout_height="61dp"
         android:background="#448AFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.046"
@@ -18,8 +18,8 @@
 
     <TextView
         android:id="@+id/loginbottomborder"
-        android:layout_width="417dp"
-        android:layout_height="34dp"
+        android:layout_width="412dp"
+        android:layout_height="60dp"
         android:background="#448AFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
