@@ -1,9 +1,11 @@
 package com.example.gamerapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -18,6 +20,7 @@ import java.util.Locale;
 public class SignUp extends AppCompatActivity {
     EditText dob;
     final Calendar myCalendar = Calendar.getInstance();
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +31,7 @@ public class SignUp extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         dob=(EditText) findViewById(R.id.udob);
-
+dob.setShowSoftInputOnFocus(false);
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
