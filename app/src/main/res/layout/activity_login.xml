@@ -59,13 +59,14 @@
     <Button
         android:id="@+id/btn_signin"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="171dp"
-        android:layout_height="51dp"
+        android:layout_width="297dp"
+        android:layout_height="57dp"
         android:layout_marginTop="92dp"
         android:background="@android:color/holo_blue_dark"
         android:text="Sign In"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtpassword" />
@@ -95,5 +96,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtpassword"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnsignup"
+        android:layout_width="293dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/holo_blue_dark"
+        android:text="Sign Up Now"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

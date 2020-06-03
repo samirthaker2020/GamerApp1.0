@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-Button btnsigIn;
+Button btnsigIn,btnsignUp;
 EditText emailId_input;
 EditText userPassword_input;
     Vibrator v;
@@ -45,12 +45,20 @@ EditText userPassword_input;
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         btnsigIn= (Button) findViewById(R.id.btn_signin);
+        btnsignUp=(Button) findViewById(R.id.btnsignup);
         emailId_input=   findViewById(R.id.txtemailid);
         userPassword_input=  findViewById(R.id.txtpassword);
         btnsigIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validateUserData();
+            }
+        });
+        btnsignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignUp.class);
+                startActivity(intent);
             }
         });
     }
