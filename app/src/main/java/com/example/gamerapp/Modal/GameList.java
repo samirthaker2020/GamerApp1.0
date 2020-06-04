@@ -2,16 +2,24 @@ package com.example.gamerapp.Modal;
 
 public class GameList {
 
-   public String gamename,gameimage;
+   public String gamename,gameimage,gametrailer;
     public  int gameid;
 
 
+    public String getGametrailer() {
+        return gametrailer;
+    }
+
+    public void setGametrailer(String gametrailer) {
+        this.gametrailer = gametrailer;
+    }
 
     @Override
     public String toString() {
         return "GameList{" +
                 "gamename='" + gamename + '\'' +
                 ", gameimage='" + gameimage + '\'' +
+                ", gametrailer='" + gametrailer + '\'' +
                 ", gameid=" + gameid +
                 '}';
     }

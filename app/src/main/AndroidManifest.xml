@@ -16,15 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Controller.SignUp">
-
-        </activity>
+        <activity android:name=".Controller.GameDetails"></activity>
+        <activity android:name=".Controller.SignUp"></activity>
         <activity
             android:name=".Controller.MainPage"
             android:label="@string/title_activity_main_page"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Controller.LoginActivity" />
         <activity android:name=".Controller.MainActivity">
             <intent-filter>

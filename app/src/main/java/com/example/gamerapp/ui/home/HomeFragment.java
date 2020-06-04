@@ -1,6 +1,7 @@
 package com.example.gamerapp.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gamerapp.Adapter.GameListAdapter;
+import com.example.gamerapp.Controller.GameDetails;
 import com.example.gamerapp.Modal.GameList;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.R;
@@ -39,7 +41,7 @@ public class HomeFragment extends Fragment {
     private ListView lstgamelist;  //lstsample
     // Creating List of Subject class.
     List<GameList> CustomGameList; //CustomSampleNamesList;
-    private ArrayList<GameList> GamelistArrayList;
+
     // Server Http URL
     String HTTP_URL = Constants.URL_GAMELIST;
 
@@ -64,8 +66,17 @@ public class HomeFragment extends Fragment {
         lstgamelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                GameList s= CustomGameList.get(position);
-                Toast.makeText(getActivity(),s.getGameid() ,Toast.LENGTH_LONG).show();
+              //  GameList s= CustomGameList.get(position);
+            //    System.out.println(CustomGameList.get(position).getGamename());
+              //  Intent intent = new Intent(getActivity(), GameDetails.class);
+              //  intent.putExtra("gamelink",CustomGameList.get(position).getGametrailer() );
+              //  startActivity(intent);
+                Context context = getActivity();
+                CharSequence text =  CustomGameList.get(position).getGamename();
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
 
             }
         });
@@ -159,6 +170,7 @@ public class HomeFragment extends Fragment {
                             samples.gamename= jsonObject.getString("gamename");
                             samples.gameid=jsonObject.getInt("gameid");
                             samples.gameimage=jsonObject.getString("gamepic");
+                            samples.gametrailer=jsonObject.getString("gametrailer");
                             //Storing Subject name in subject list.
                           //  samples.batchname = jsonObject.getString("batchname");
 
