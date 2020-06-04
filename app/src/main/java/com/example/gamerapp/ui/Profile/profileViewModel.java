@@ -12,7 +12,7 @@ public class profileViewModel extends ViewModel {
 
     public profileViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Welcome,  "+ Constants.CURRENT_USER+""+Constants.CUURENT_USERID);
+        mText.setValue("Welcome,  "+ Constants.CURRENT_USER+"");
     }
 
     public LiveData<String> getText() {
