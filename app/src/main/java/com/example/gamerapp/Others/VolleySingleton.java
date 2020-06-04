@@ -1,4 +1,4 @@
-package com.example.gamerapp;
+package com.example.gamerapp.Others;
 
 import android.content.Context;
 
@@ -6,9 +6,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-/**
- * Created by Kamere on 4/15/2018.
- */
+
     public class VolleySingleton {
         private static VolleySingleton mInstance;
         private RequestQueue mRequestQueue;

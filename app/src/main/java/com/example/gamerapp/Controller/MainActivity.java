@@ -1,4 +1,4 @@
-package com.example.gamerapp;
+package com.example.gamerapp.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+
+import com.example.gamerapp.R;
 
 public class MainActivity extends AppCompatActivity {
     private ProgressBar pgsBar;

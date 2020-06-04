@@ -1,16 +1,18 @@
-package com.example.gamerapp.ui.gallery;
+package com.example.gamerapp.ui.Profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+import com.example.gamerapp.Others.Constants;
+
+public class profileViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public profileViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("Welcome,  "+ Constants.CURRENT_USER+""+Constants.CUURENT_USERID);
     }
 
     public LiveData<String> getText() {

@@ -1,4 +1,4 @@
-package com.example.gamerapp;
+package com.example.gamerapp.Others;
 
 import android.content.Context;
 import android.content.SharedPreferences;

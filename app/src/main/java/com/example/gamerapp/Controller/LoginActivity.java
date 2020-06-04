@@ -1,4 +1,4 @@
-package com.example.gamerapp;
+package com.example.gamerapp.Controller;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +20,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.R;
+import com.example.gamerapp.Others.SharedPref;
+import com.example.gamerapp.Others.VolleySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -128,7 +132,9 @@ EditText userPassword_input;
 
                                 //getting user name
                                 String Username = obj.getString("username");
+                                int Userid=obj.getInt("uid");
                                 Constants.CURRENT_USER=Username;
+                                Constants.CUURENT_USERID=Userid;
                                 Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
 
                                 //storing the user in shared preferences

@@ -1,8 +1,9 @@
-package com.example.gamerapp;
+package com.example.gamerapp.Others;
 
 
 public class Constants {
    public static String CURRENT_USER="";
+   public static int CUURENT_USERID=0;
     private static final String ROOT_URL = "http://192.168.2.21/gamerapp/API/";
      public  static String SAMPLE_DATE="";
     public static final String URL_FORGOTPASSWORD = ROOT_URL+"forgotpassword.php";
