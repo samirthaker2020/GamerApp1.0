@@ -37,7 +37,7 @@ public class MainPage extends AppCompatActivity   implements NavigationView.OnNa
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_logout)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -64,9 +64,24 @@ public class MainPage extends AppCompatActivity   implements NavigationView.OnNa
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_page, menu);
+        MenuItem item = menu.findItem(R.id.action_logout);
+            item.setIcon(R.mipmap.ic_logout);
         return true;
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_logout:
 
+                SharedPref.getInstance(getApplicationContext()).logout();
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -76,14 +91,11 @@ public class MainPage extends AppCompatActivity   implements NavigationView.OnNa
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        System.out.println(id);
-         if (id == R.id.nav_logout) {
-           finish();
-        }
+       // int id = item.getItemId();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+
+      //  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+      //  drawer.closeDrawer(GravityCompat.START);
+        return false;
     }
 }
