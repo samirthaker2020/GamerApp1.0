@@ -71,6 +71,7 @@ public class GameListAdapter extends BaseAdapter {
                 .load(Constants.URL_IMAGES+GameArrayList.get(position).getGameimage())
                 .placeholder(R.mipmap.ic_launcher) // can also be a drawable
                 .noFade()
+                .resize(500,500)
                 .error(R.drawable.ic_alert_foreground)
                 .into(viewItem.gamepic);
         return convertView;
