@@ -10,6 +10,6 @@ public class Constants {
     public static final String URL_LOGIN = ROOT_URL+"userlogin.php";
     public static final String URL_PASSWORDRECOVERY = ROOT_URL+"passwordrecovery.php";
     public static final String URL_USER_REGISTER = ROOT_URL+"newuser.php";
-    public static final String URL_ALLSAMPLE= ROOT_URL+"allsample.php";
+    public static final String USER_PROFILE= ROOT_URL+"userprofile.php";
     public static final String URL_SAMPLE_REGISTER= ROOT_URL+"sampleregister.php";
 }
