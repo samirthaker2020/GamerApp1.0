@@ -8,18 +8,20 @@
 
     <TextView
         android:id="@+id/logintopborder"
-        android:layout_width="411dp"
-        android:layout_height="61dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#448AFF"
+        android:padding="10dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/loginbottomborder"
-        android:layout_width="412dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#448AFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,22 +31,27 @@
 
     <EditText
         android:id="@+id/txtemailid"
-        android:layout_width="325dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="124dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/border"
         android:ems="10"
         android:hint="Enter your email id"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logintopborder" />
 
     <EditText
         android:id="@+id/txtpassword"
-        android:layout_width="323dp"
-        android:layout_height="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="24dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="92dp"
         android:background="@drawable/border"
         android:ems="10"
@@ -59,30 +66,35 @@
     <Button
         android:id="@+id/btn_signin"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="297dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="92dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="20dp"
         android:background="@android:color/holo_blue_dark"
         android:text="Sign In"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtpassword" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="192dp"
-        android:layout_height="33dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Sign In Your Account"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/txtemailid"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logintopborder" />
+        app:layout_constraintTop_toBottomOf="@+id/logintopborder"
+        app:layout_constraintVertical_bias="0.263" />
 
     <CheckBox
         android:id="@+id/rememberme"
@@ -99,22 +111,24 @@
 
     <Button
         android:id="@+id/btnsignup"
-        android:layout_width="293dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/holo_blue_dark"
         android:text="Sign Up Now"
         android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_signin" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="181dp"
-        android:layout_height="29dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center|center_vertical"
         android:text="GamerApp"
         android:textColor="@color/cardview_light_background"

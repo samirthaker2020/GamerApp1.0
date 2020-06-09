@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/topborder1"
-        android:layout_width="416dp"
+        android:layout_width="match_parent"
         android:layout_height="67dp"
         android:background="#448AFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/Title"
-        android:layout_width="273dp"
-        android:layout_height="83dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
@@ -35,8 +35,8 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
-        android:layout_width="133dp"
-        android:layout_height="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,8 +45,8 @@
 
     <TextView
         android:id="@+id/companyinfo"
-        android:layout_width="192dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="\u00a9 2020 Gamer "
         android:textColor="@color/colorPrimary"

@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/signuptopborder"
-        android:layout_width="423dp"
-        android:layout_height="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#448AFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -18,8 +18,8 @@
 
     <TextView
         android:id="@+id/signup_title"
-        android:layout_width="171dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Sign Up Now"
@@ -33,9 +33,11 @@
 
     <EditText
         android:id="@+id/ufname"
-        android:layout_width="326dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border"
         android:ems="10"
         android:hint="Enter First Name"
@@ -48,23 +50,27 @@
 
     <EditText
         android:id="@+id/ulname"
-        android:layout_width="326dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border"
         android:ems="10"
         android:hint="Enter Last Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ufname" />
 
     <EditText
         android:id="@+id/uemail"
-        android:layout_width="326dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border"
         android:ems="10"
         android:hint="Enter Email id"
@@ -75,9 +81,11 @@
 
     <EditText
         android:id="@+id/upassword"
-        android:layout_width="326dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border"
         android:ems="10"
         android:hint="Enter  Password"
@@ -89,9 +97,11 @@
 
     <EditText
         android:id="@+id/urepassword"
-        android:layout_width="326dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border"
         android:ems="10"
         android:hint="Re-Enter Password"
@@ -103,9 +113,11 @@
 
     <EditText
         android:id="@+id/ucontactno"
-        android:layout_width="326dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border"
         android:ems="10"
         android:hint="Enter Phone Number"
@@ -117,10 +129,10 @@
 
     <EditText
         android:id="@+id/udob"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="44dp"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="52dp"
         android:background="@drawable/border"
         android:ems="10"
         android:hint="Your BirthDate"
@@ -131,16 +143,19 @@
     <TextView
         android:id="@+id/txtdob"
         android:layout_width="91dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="D.O.B:"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnregister"
         app:layout_constraintEnd_toStartOf="@+id/udob"
-        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintHorizontal_bias="0.563"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ucontactno" />
+        app:layout_constraintTop_toBottomOf="@+id/ucontactno"
+        app:layout_constraintVertical_bias="0.163" />
 
     <Button
         android:id="@+id/btnregister"

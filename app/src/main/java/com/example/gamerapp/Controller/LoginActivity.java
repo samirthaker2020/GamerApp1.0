@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 Button btnsigIn,btnsignUp;
 EditText emailId_input;
+CheckBox remember;
 EditText userPassword_input;
     Vibrator v;
     //change this to match your url
@@ -51,10 +54,37 @@ EditText userPassword_input;
         btnsigIn= (Button) findViewById(R.id.btn_signin);
         btnsignUp=(Button) findViewById(R.id.btnsignup);
         emailId_input=   findViewById(R.id.txtemailid);
+        remember=(CheckBox) findViewById(R.id.rememberme);
         userPassword_input=  findViewById(R.id.txtpassword);
+
+        if(remember.isChecked()==true)
+        {
+            SharedPreferences prefs = this.getSharedPreferences("mydata", Context.MODE_PRIVATE);
+            String shemailid = prefs.getString("emailid", null);
+            emailId_input.setText(shemailid);
+            remember.setChecked(true);
+        }else
+        {
+            remember.setChecked(false);
+        }
+
         btnsigIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(remember.isChecked()==true)
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences("mydata", MODE_PRIVATE).edit();
+                    editor.putString("emailid", emailId_input.getText().toString());
+                    editor.apply();
+                    remember.setChecked(true);
+                }else
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences("mydata", MODE_PRIVATE).edit();
+                    editor.putString("emailid",null);
+                    editor.apply();
+                    remember.setChecked(false);
+                }
+
                 validateUserData();
             }
         });
