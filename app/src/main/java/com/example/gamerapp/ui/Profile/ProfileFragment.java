@@ -3,13 +3,17 @@ package com.example.gamerapp.ui.Profile;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +42,7 @@ import java.util.Map;
 
 public class ProfileFragment extends Fragment {
     final String loginURL = Constants.USER_PROFILE;
+  ToggleButton btnUpdate;
     private profileViewModel profileViewModel;
     private EditText pFname,pLname,pEmail,pContactno,pDob;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -52,7 +57,7 @@ public class ProfileFragment extends Fragment {
         pEmail=root.findViewById(R.id.editText_email);
         pFname=root.findViewById(R.id.editText_fname);
         pLname=root.findViewById(R.id.editText_lname);
-
+        btnUpdate=root.findViewById(R.id.btn_update);
         profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -60,6 +65,23 @@ public class ProfileFragment extends Fragment {
             }
         });
         fetchuser();
+
+        btnUpdate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
+                    pFname.setEnabled(true);
+                    pFname.setInputType(InputType.TYPE_CLASS_TEXT);
+                    pFname.setFocusable(true);
+                } else {
+                    // The toggle is disabled
+                    pFname.setEnabled(false);
+                    pFname.setInputType(InputType.TYPE_CLASS_TEXT);
+                    pFname.setFocusable(false);
+                }
+            }
+        });
+
         return root;
     }
     private void fetchuser() {

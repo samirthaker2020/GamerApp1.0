@@ -61,6 +61,7 @@
         style="@android:style/Widget.DeviceDefault.ImageButton"
         android:layout_width="49dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
         android:background="@color/design_default_color_background"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"

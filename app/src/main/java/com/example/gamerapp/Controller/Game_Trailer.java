@@ -16,7 +16,7 @@ import com.example.gamerapp.R;
 
 public class Game_Trailer extends AppCompatActivity {
 String gametrailer,gamename;
-Button btnUpdate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ Button btnUpdate;
             gametrailer = extras.getString("gametrailer");
             gamename=extras.getString("gamename");
             // and get whatever type user account id is
-            Toast.makeText(getApplicationContext(),gametrailer, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(),gametrailer, Toast.LENGTH_SHORT).show();
             getSupportActionBar().setTitle(gamename);
           //  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
           //          WindowManager.LayoutParams.FLAG_FULLSCREEN);
