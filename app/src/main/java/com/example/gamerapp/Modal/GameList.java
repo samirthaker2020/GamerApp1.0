@@ -1,6 +1,8 @@
 package com.example.gamerapp.Modal;
 
-public class GameList {
+import java.io.Serializable;
+
+public class GameList implements Serializable {
 
    public String gamename,gameimage,gametrailer;
     public  int gameid;

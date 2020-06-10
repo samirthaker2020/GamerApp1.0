@@ -6,34 +6,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView_gamepic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/editText_gamename"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:mipmap/sym_def_app_icon" />
-
     <EditText
         android:id="@+id/editText_gamename"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"
+        android:layout_height="41dp"
+        android:background="@color/design_default_color_on_primary"
         android:ems="10"
         android:enabled="false"
         android:gravity="center|center_vertical"
         android:inputType="textPersonName"
+        android:paddingStart="20dp"
         android:text="Name"
+        android:textAlignment="textStart"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_gamepic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.12" />
+
+    <ImageView
+        android:id="@+id/imageView_gamepic"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/border"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/txt_learnmain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_gamename"
+        app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+    <TextView
+        android:id="@+id/txt_learnmain"
+        android:layout_width="167dp"
+        android:layout_height="39dp"
+        android:gravity="center|center_vertical"
+        android:paddingRight="30dp"
+        android:text="Learn More  >"
+        android:textAlignment="textEnd"
+        android:textColor="@color/hyperlink"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/editText_gamename"
         app:layout_constraintTop_toBottomOf="@+id/imageView_gamepic" />
+
+    <ImageButton
+        android:id="@+id/btn_trailer"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        android:layout_width="49dp"
+        android:layout_height="40dp"
+        android:background="@color/design_default_color_background"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_gamepic"
+        app:srcCompat="@drawable/ic_trailer_foreground" />
 </androidx.constraintlayout.widget.ConstraintLayout>

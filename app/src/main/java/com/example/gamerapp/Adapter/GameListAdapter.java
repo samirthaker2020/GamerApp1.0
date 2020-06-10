@@ -2,6 +2,7 @@ package com.example.gamerapp.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -9,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.gamerapp.Controller.Game_Trailer;
 import com.example.gamerapp.Modal.GameList;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.R;
@@ -48,7 +52,7 @@ public class GameListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewItem viewItem = null;
 
         if(convertView == null)
@@ -58,7 +62,10 @@ public class GameListAdapter extends BaseAdapter {
             convertView = layoutInfiater.inflate(R.layout.custom_gamelist, null);
             viewItem.gamename= (EditText) convertView.findViewById(R.id.editText_gamename);
             viewItem.gamepic=(ImageView) convertView.findViewById(R.id.imageView_gamepic);
+            viewItem.btn_trailer=(ImageButton) convertView.findViewById(R.id.btn_trailer);
             convertView.setTag(viewItem);
+
+
         }
         else
         {
@@ -74,6 +81,19 @@ public class GameListAdapter extends BaseAdapter {
                 .resize(500,500)
                 .error(R.drawable.ic_alert_foreground)
                 .into(viewItem.gamepic);
+
+        viewItem.btn_trailer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             //   int duration = Toast.LENGTH_SHORT;
+              //  Toast toast = Toast.makeText(context, GameArrayList.get(position).getGametrailer(), duration);
+               // toast.show();
+                Intent i=new Intent(context, Game_Trailer.class);
+                i.putExtra("gametrailer",GameArrayList.get(position).getGametrailer());
+                context.startActivity(i);
+            }
+        });
+
         return convertView;
     }
 }
@@ -81,5 +101,6 @@ class ViewItem
 {
     EditText gamename;
     ImageView gamepic;
+    ImageButton btn_trailer;
 
 }

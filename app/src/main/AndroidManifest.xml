@@ -16,29 +16,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Controller.Game_Trailer"></activity>
         <activity
-            android:screenOrientation="portrait"
-            android:name=".Controller.GameDetails"></activity>
+            android:name=".Controller.GameDetails"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".Controller.SignUp"></activity>
+            android:name=".Controller.SignUp"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Controller.MainPage"
             android:label="@string/title_activity_main_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
             android:screenOrientation="portrait"
-            android:name=".Controller.LoginActivity" />
-        <activity
-            android:screenOrientation="portrait"
-            android:name=".Controller.MainActivity">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Controller.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Controller.MainActivity"
+            android:screenOrientation="portrait"></activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
