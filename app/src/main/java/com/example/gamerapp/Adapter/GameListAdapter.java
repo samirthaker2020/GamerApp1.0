@@ -90,6 +90,7 @@ public class GameListAdapter extends BaseAdapter {
                // toast.show();
                 Intent i=new Intent(context, Game_Trailer.class);
                 i.putExtra("gametrailer",GameArrayList.get(position).getGametrailer());
+                i.putExtra("gamename",GameArrayList.get(position).getGamename());
                 context.startActivity(i);
             }
         });

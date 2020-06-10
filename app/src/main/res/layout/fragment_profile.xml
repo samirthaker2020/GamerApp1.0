@@ -181,4 +181,21 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_email"
         app:layout_constraintVertical_bias="0.01" />
 
+    <ToggleButton
+        android:id="@+id/btn_update"
+        android:layout_width="165dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="112dp"
+        android:background="@drawable/border"
+        android:checked="false"
+        android:text="ToggleButton"
+        android:textOff="UPADTE"
+        android:textOn="SAVE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_dob"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
