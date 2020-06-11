@@ -50,6 +50,7 @@ import java.util.Map;
 
 public class ProfileFragment extends Fragment {
     final String loginURL = Constants.USER_PROFILE;
+    final String userUpdateURL = Constants.URL_UPDATEPROFILE;
   ToggleButton btnUpdate;
   EditText edtdob;
     private profileViewModel profileViewModel;
@@ -93,6 +94,7 @@ public class ProfileFragment extends Fragment {
                btnenable();
                 } else {
                     // The toggle is disabled
+                    updateUser();
                    btndisable();
                 }
             }
@@ -256,6 +258,71 @@ public class ProfileFragment extends Fragment {
 
         AlertDialog alert11 = builder1.create();
         alert11.show();
+    }
+
+    private void updateUser() {
+
+
+
+
+
+        //Call our volley library
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,userUpdateURL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+//                            Toast.makeText(getApplicationContext(),response.toString(), Toast.LENGTH_SHORT).show();
+
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.getBoolean("error")) {
+                                // Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+                                singlemsg("Invalid",obj.getString("message"));
+                                //  email_input.setText("");
+                                //    password_input.setText("");
+                            } else {
+
+                                //getting user name
+                                //  String Username = obj.getString("username");
+                                //    Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
+                                singlemsg("SUCESS",obj.getString("message"));
+                                //storing the user in shared preferences
+                                //     SharedPref.getInstance(getApplicationContext()).storeUserName(Username);
+                                //starting the profile activity
+
+
+
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(),"Connection Error"+error, Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("uid", String.valueOf(Constants.CUURENT_USERID));
+                params.put("fname", pFname.getText().toString());
+                params.put("lname", pLname.getText().toString());
+                params.put("email", pEmail.getText().toString());
+
+                params.put("contactno", pContactno.getText().toString());
+                params.put("dob", pDob.getText().toString());
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
 }
