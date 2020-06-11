@@ -122,6 +122,7 @@
         android:ems="10"
         android:hint="Enter Phone Number"
         android:inputType="numberSigned"
+        android:maxLength="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"

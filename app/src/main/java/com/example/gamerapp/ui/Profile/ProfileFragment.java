@@ -1,11 +1,14 @@
 package com.example.gamerapp.ui.Profile;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +59,7 @@ public class ProfileFragment extends Fragment {
     private profileViewModel profileViewModel;
     final Calendar myCalendar = Calendar.getInstance();
     private EditText pFname,pLname,pEmail,pContactno,pDob;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class ProfileFragment extends Fragment {
         pFname=root.findViewById(R.id.editText_fname);
         pLname=root.findViewById(R.id.editText_lname);
         btnUpdate=root.findViewById(R.id.btn_update);
+
 
         profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -94,8 +99,8 @@ public class ProfileFragment extends Fragment {
                btnenable();
                 } else {
                     // The toggle is disabled
-                    updateUser();
-                   btndisable();
+                    isvalid();
+
                 }
             }
         });
@@ -261,11 +266,6 @@ public class ProfileFragment extends Fragment {
     }
 
     private void updateUser() {
-
-
-
-
-
         //Call our volley library
         StringRequest stringRequest = new StringRequest(Request.Method.POST,userUpdateURL,
                 new Response.Listener<String>() {
@@ -324,5 +324,57 @@ public class ProfileFragment extends Fragment {
         };
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
+    public void isvalid()
+    {
 
+        //checking if email is empty
+        if (TextUtils.isEmpty(pFname.getText().toString())) {
+            pFname.setError("Please enter your FirstName");
+            pFname.requestFocus();
+
+            btnUpdate.setChecked(true);
+            btnUpdate.setTextOn("SAVE");
+            btnenable();
+        }else if (TextUtils.isEmpty(pLname.getText().toString())) {
+            pLname.setError("Please enter your LastName");
+            pLname.requestFocus();
+
+            btnUpdate.setChecked(true);
+            btnUpdate.setTextOn("SAVE");
+            btnenable();
+        } else if (TextUtils.isEmpty(pEmail.getText().toString())) {
+        pEmail.setError("Please enter your Email ID");
+        pEmail.requestFocus();
+
+        btnUpdate.setChecked(true);
+        btnUpdate.setTextOn("SAVE");
+        btnenable();
+    } else if (TextUtils.isEmpty(pContactno.getText().toString())) {
+        pContactno.setError("Please enter your Phone Numbar");
+        pContactno.requestFocus();
+
+        btnUpdate.setChecked(true);
+        btnUpdate.setTextOn("SAVE");
+        btnenable();
+    }else if (TextUtils.isEmpty(pDob.getText().toString())) {
+        pDob.setError("Please enter your Date Of Birth");
+        pDob.requestFocus();
+
+        btnUpdate.setChecked(true);
+        btnUpdate.setTextOn("SAVE");
+        btnenable();
+    }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(pEmail.getText().toString()).matches()) {
+            pEmail.setError("Please enter your valid Email ID");
+            pEmail.requestFocus();
+
+            btnUpdate.setChecked(true);
+            btnUpdate.setTextOn("SAVE");
+            btnenable();
+    }
+        else
+        {
+            updateUser();
+            btndisable();
+        }
+    }
 }
