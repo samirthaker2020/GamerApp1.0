@@ -68,9 +68,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
               //  GameList s= CustomGameList.get(position);
             //    System.out.println(CustomGameList.get(position).getGamename());
-              //  Intent intent = new Intent(getActivity(), GameDetails.class);
-              //  intent.putExtra("gamelink",CustomGameList.get(position).getGametrailer() );
-              //  startActivity(intent);
+
                 Context context = getActivity();
                 CharSequence text =  CustomGameList.get(position).getGamename();
                 int duration = Toast.LENGTH_SHORT;

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gamerapp.Controller.GameDetails;
 import com.example.gamerapp.Controller.Game_Trailer;
 import com.example.gamerapp.Modal.GameList;
 import com.example.gamerapp.Others.Constants;
@@ -63,6 +64,7 @@ public class GameListAdapter extends BaseAdapter {
             viewItem.gamename= (EditText) convertView.findViewById(R.id.editText_gamename);
             viewItem.gamepic=(ImageView) convertView.findViewById(R.id.imageView_gamepic);
             viewItem.btn_trailer=(ImageButton) convertView.findViewById(R.id.btn_trailer);
+            viewItem.txtlearnmore=(TextView) convertView.findViewById(R.id.txt_learnmore);
             convertView.setTag(viewItem);
 
 
@@ -95,6 +97,15 @@ public class GameListAdapter extends BaseAdapter {
             }
         });
 
+        viewItem.txtlearnmore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(context, GameDetails.class);
+                i.putExtra("gametrailer",GameArrayList.get(position).getGametrailer());
+                i.putExtra("gamename",GameArrayList.get(position).getGamename());
+                context.startActivity(i);
+            }
+        });
         return convertView;
     }
 }
@@ -103,5 +114,6 @@ class ViewItem
     EditText gamename;
     ImageView gamepic;
     ImageButton btn_trailer;
+    TextView txtlearnmore;
 
 }

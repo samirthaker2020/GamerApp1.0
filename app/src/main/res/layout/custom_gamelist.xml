@@ -34,14 +34,14 @@
         android:layout_height="220dp"
         android:background="@drawable/border"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/txt_learnmain"
+        app:layout_constraintBottom_toTopOf="@+id/txt_learnmore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_gamename"
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <TextView
-        android:id="@+id/txt_learnmain"
+        android:id="@+id/txt_learnmore"
         android:layout_width="167dp"
         android:layout_height="39dp"
         android:gravity="center|center_vertical"
@@ -62,8 +62,11 @@
         android:layout_width="49dp"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginEnd="175dp"
         android:background="@color/design_default_color_background"
+        android:contentDescription="TODO"
         android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/txt_learnmore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_gamepic"
         app:srcCompat="@drawable/ic_trailer_foreground" />

@@ -20,6 +20,7 @@
             android:parentActivityName=".Controller.MainPage"></activity>
         <activity
             android:name=".Controller.GameDetails"
+            android:parentActivityName=".Controller.MainPage"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Controller.SignUp"
