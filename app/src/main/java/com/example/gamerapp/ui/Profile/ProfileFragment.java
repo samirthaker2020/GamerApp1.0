@@ -1,7 +1,9 @@
 package com.example.gamerapp.ui.Profile;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +20,7 @@ import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -29,6 +33,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gamerapp.Controller.LoginActivity;
 import com.example.gamerapp.Controller.MainPage;
+import com.example.gamerapp.Controller.SignUp;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.Others.VolleySingleton;
@@ -37,14 +42,20 @@ import com.example.gamerapp.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
     final String loginURL = Constants.USER_PROFILE;
   ToggleButton btnUpdate;
+  EditText edtdob;
     private profileViewModel profileViewModel;
+    final Calendar myCalendar = Calendar.getInstance();
     private EditText pFname,pLname,pEmail,pContactno,pDob;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -58,6 +69,7 @@ public class ProfileFragment extends Fragment {
         pFname=root.findViewById(R.id.editText_fname);
         pLname=root.findViewById(R.id.editText_lname);
         btnUpdate=root.findViewById(R.id.btn_update);
+
         profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -65,32 +77,100 @@ public class ProfileFragment extends Fragment {
             }
         });
         fetchuser();
-
+        pDob.setShowSoftInputOnFocus(false);
+        pDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getActivity(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
         btnUpdate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // The toggle is enabled
-                    pFname.setEnabled(true);
-                    pFname.setInputType(InputType.TYPE_CLASS_TEXT);
-                    pFname.setFocusable(true);
+               btnenable();
                 } else {
                     // The toggle is disabled
-                    pFname.setEnabled(false);
-                    pFname.setInputType(InputType.TYPE_CLASS_TEXT);
-                    pFname.setFocusable(false);
+                   btndisable();
                 }
             }
         });
 
         return root;
     }
+
+    final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            pDob.setInputType(InputType.TYPE_NULL);
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            updateLabel();
+        }
+
+    };
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        pDob.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void btnenable()
+    {
+        pFname.setEnabled(true);
+        pFname.setInputType(InputType.TYPE_CLASS_TEXT);
+        pFname.setFocusable(true);
+
+        pLname.setEnabled(true);
+        pLname.setInputType(InputType.TYPE_CLASS_TEXT);
+        pLname.setFocusable(true);
+
+        pContactno.setEnabled(true);
+        pContactno.setInputType(InputType.TYPE_CLASS_TEXT);
+        pContactno.setFocusable(true);
+
+        pDob.setEnabled(true);
+        pDob.setInputType(InputType.TYPE_CLASS_TEXT);
+        pDob.setFocusable(true);
+
+        pEmail.setEnabled(true);
+        pEmail.setInputType(InputType.TYPE_CLASS_TEXT);
+        pEmail.setFocusable(true);
+    }
+    private void btndisable()
+    {
+        pFname.setEnabled(false);
+        pFname.setInputType(InputType.TYPE_NULL);
+        pFname.setFocusable(false);
+
+        pLname.setEnabled(false);
+        pLname.setInputType(InputType.TYPE_NULL);
+        pLname.setFocusable(false);
+
+        pContactno.setEnabled(false);
+        pContactno.setInputType(InputType.TYPE_NULL);
+        pContactno.setFocusable(false);
+
+        pDob.setEnabled(false);
+        pDob.setInputType(InputType.TYPE_NULL);
+        pDob.setFocusable(false);
+
+        pEmail.setEnabled(false);
+        pEmail.setInputType(InputType.TYPE_NULL);
+        pEmail.setFocusable(false);
+    }
     private void fetchuser() {
 
         //first getting the values
-
-
-
-
         //Call our volley library
         StringRequest stringRequest = new StringRequest(Request.Method.POST,loginURL,
                 new Response.Listener<String>() {
