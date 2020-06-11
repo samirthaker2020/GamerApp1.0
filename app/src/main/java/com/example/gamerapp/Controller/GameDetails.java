@@ -9,9 +9,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.gamerapp.Adapter.TabViewPagerAdapter;
+import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.R;
 import com.example.gamerapp.Tabs.GameCastcrew;
 import com.example.gamerapp.Tabs.GameDescription;
@@ -20,6 +22,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class GameDetails extends AppCompatActivity {
 String gameUrl,gamename;
+        String gameid;
     VideoView simpleVideoView;
     MediaController mediaControls;
     private TabLayout t1;
@@ -35,6 +38,12 @@ String gameUrl,gamename;
         if (b != null) {
             gameUrl = (String) b.get("gametrailer");
             gamename=(String) b.get("gamename");
+            gameid=(String) b.get("gameid") ;
+
+            if(gameid!=null)
+            {
+                Constants.CUURENT_GAMEID=gameid;
+            }
             showvideo(gameUrl);
             getSupportActionBar().setTitle(gamename);
         }

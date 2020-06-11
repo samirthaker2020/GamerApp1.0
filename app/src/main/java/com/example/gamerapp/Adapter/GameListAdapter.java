@@ -93,6 +93,7 @@ public class GameListAdapter extends BaseAdapter {
                 Intent i=new Intent(context, Game_Trailer.class);
                 i.putExtra("gametrailer",GameArrayList.get(position).getGametrailer());
                 i.putExtra("gamename",GameArrayList.get(position).getGamename());
+
                 context.startActivity(i);
             }
         });
@@ -100,10 +101,12 @@ public class GameListAdapter extends BaseAdapter {
         viewItem.txtlearnmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Toast.makeText(context, String.valueOf(GameArrayList.get(position).getGameid()), Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(context, GameDetails.class);
                 i.putExtra("gametrailer",GameArrayList.get(position).getGametrailer());
                 i.putExtra("gamename",GameArrayList.get(position).getGamename());
-                context.startActivity(i);
+                i.putExtra("gameid",String.valueOf(GameArrayList.get(position).getGameid()));
+               context.startActivity(i);
             }
         });
         return convertView;
