@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
-        android:name="com.example.gamerapp.ui.home.HomeSecondFragment"
+        android:name="com.example.gamerapp.ui.ReviewHistory.ReviewHistoryFragment"
         android:label="@string/home_second"
-        tools:layout="@layout/fragment_home_second">
+        tools:layout="@layout/fragment_reviewhistory">
         <action
             android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
             app:destination="@id/nav_home" />
@@ -30,14 +30,24 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_profile"
         android:name="com.example.gamerapp.ui.Profile.ProfileFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_profile"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.gamerapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_reviewhistory"
+        android:name="com.example.gamerapp.ui.ReviewHistory.ReviewHistoryFragment"
+        android:label="@string/menu_reviewhistory"
+        tools:layout="@layout/fragment_reviewhistory" />
+    <fragment
+        android:id="@+id/nav_aboutus"
+        android:name="com.example.gamerapp.ui.AboutUs.AboutUs"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.gamerapp.ui.Logout.NavLogout"
+        android:label="fragment_nav_logout"
+        tools:layout="@layout/fragment_nav_logout" />
 </navigation>
