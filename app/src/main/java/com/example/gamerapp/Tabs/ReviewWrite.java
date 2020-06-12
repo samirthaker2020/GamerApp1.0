@@ -2,8 +2,10 @@ package com.example.gamerapp.Tabs;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -30,6 +32,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -159,12 +163,13 @@ Button   btnsubmitreview;
                         error.printStackTrace();
                     }
                 }) {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("writegameid", Constants.CUURENT_GAMEID);
                 params.put("writereview", edittxt_Wreview.getText().toString());
-                params.put("reviewdate", todaydate());
+                params.put("reviewdate", currentdatetime());
                 params.put("uid",String.valueOf(Constants.CUURENT_USERID));
 
 
@@ -173,21 +178,19 @@ Button   btnsubmitreview;
         };
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
-public String  todaydate()
+@RequiresApi(api = Build.VERSION_CODES.O)
+public String currentdatetime()
 {
-    Date c = Calendar.getInstance().getTime();
-    System.out.println("Current time => " + c);
-
-    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-    String formattedDate = df.format(c);
-    return  formattedDate;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy hh.mm aa");
+    String formattedDate = dateFormat.format(new Date()).toString();
+   return formattedDate;
 }
     public void singlemsg(String title,String msg)
     {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage(msg);
         builder1.setCancelable(true);
-        builder1.setIcon(R.drawable.ic_alert_foreground);
+        builder1.setIcon(R.drawable.ic_sucess_foreground);
         builder1.setTitle(title);
         builder1.setPositiveButton(
                 "OK",

@@ -183,7 +183,7 @@ isvalid();
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setMessage(msg);
         builder1.setCancelable(true);
-        builder1.setIcon(R.drawable.ic_alert_foreground);
+        builder1.setIcon(R.drawable.ic_sucess_foreground);
         builder1.setTitle(title);
         builder1.setPositiveButton(
                 "OK",

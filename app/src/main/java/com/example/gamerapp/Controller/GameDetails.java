@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.MediaController;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.gamerapp.Adapter.TabViewPagerAdapter;
@@ -18,6 +16,7 @@ import com.example.gamerapp.R;
 import com.example.gamerapp.Tabs.GameCastcrew;
 import com.example.gamerapp.Tabs.GameDescription;
 import com.example.gamerapp.Tabs.GameOverview;
+import com.example.gamerapp.Tabs.ReviewRead;
 import com.example.gamerapp.Tabs.ReviewWrite;
 import com.google.android.material.tabs.TabLayout;
 
@@ -54,6 +53,7 @@ String gameUrl,gamename;
         adapter.AddFragment(new GameOverview(),"Overview");
         adapter.AddFragment(new GameDescription(),"Synopsis");
         adapter.AddFragment(new GameCastcrew(),"Cast & Crew");
+        adapter.AddFragment(new ReviewRead(),"Read Review");
         adapter.AddFragment(new ReviewWrite(),"Write Review");
 
         v1.setAdapter(adapter);
