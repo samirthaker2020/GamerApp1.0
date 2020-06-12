@@ -18,6 +18,7 @@ import com.example.gamerapp.R;
 import com.example.gamerapp.Tabs.GameCastcrew;
 import com.example.gamerapp.Tabs.GameDescription;
 import com.example.gamerapp.Tabs.GameOverview;
+import com.example.gamerapp.Tabs.ReviewWrite;
 import com.google.android.material.tabs.TabLayout;
 
 public class GameDetails extends AppCompatActivity {
@@ -51,8 +52,9 @@ String gameUrl,gamename;
         v1=(ViewPager) findViewById(R.id.vpager1);
         TabViewPagerAdapter adapter=new TabViewPagerAdapter(getSupportFragmentManager());
         adapter.AddFragment(new GameOverview(),"Overview");
-        adapter.AddFragment(new GameDescription(),"Description");
+        adapter.AddFragment(new GameDescription(),"Synopsis");
         adapter.AddFragment(new GameCastcrew(),"Cast & Crew");
+        adapter.AddFragment(new ReviewWrite(),"Write Review");
 
         v1.setAdapter(adapter);
         t1.setupWithViewPager(v1);
