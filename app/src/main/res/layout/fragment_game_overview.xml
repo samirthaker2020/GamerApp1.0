@@ -40,7 +40,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="TextView"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/Overview_gametype"
@@ -52,7 +52,7 @@
                 android:layout_marginBottom="10dp"
                 android:text="TextView"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/Overview_gameplatform"
@@ -66,7 +66,7 @@
                 android:maxLines="5"
                 android:text="TextView"
                 android:textColor="@color/cardview_dark_background"
-                android:textSize="14sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/Overview_image"
