@@ -16,5 +16,6 @@ public class Constants {
  public static final String URL_UPDATEPROFILE= ROOT_URL+"profileupdate.php";
     public static final String URL_GAMEDETAILS= ROOT_URL+"gamedetails.php";
     public static final String URL_GAMEDESCRIPTION = ROOT_URL+"gamedescription.php";
+    public static final String URL_CAST = ROOT_URL+"cast.php";
     public static final String URL_IMAGES=  "http://www.samirthaker.info/gamerapp/assets/images/";
 }
