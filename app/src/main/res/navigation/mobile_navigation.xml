@@ -50,4 +50,14 @@
         android:name="com.example.gamerapp.ui.Logout.NavLogout"
         android:label="fragment_nav_logout"
         tools:layout="@layout/fragment_nav_logout" />
+    <fragment
+        android:id="@+id/nav_contactus"
+        android:name="com.example.gamerapp.ui.ContactUs.nav_contactus"
+        android:label="fragment_nav_contactus"
+        tools:layout="@layout/fragment_nav_contactus" />
+    <fragment
+        android:id="@+id/nav_needhelp"
+        android:name="com.example.gamerapp.ui.NeedHelp.nav_needhelp"
+        android:label="fragment_nav_needhelp"
+        tools:layout="@layout/fragment_nav_needhelp" />
 </navigation>

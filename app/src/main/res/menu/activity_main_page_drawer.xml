@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:icon="@drawable/ic_game_foreground"
+            android:title="@string/menu_home"
+            app:itemIconSize="200dp"/>
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_usericon_foreground"
+            android:icon="@drawable/user"
             android:title="@string/menu_profile" />
         <item
             android:id="@+id/nav_reviewhistory"
-            android:icon="@drawable/ic_history_foreground"
+            android:icon="@drawable/review"
             android:title="@string/menu_reviewhistory" />
         <item
+            android:id="@+id/nav_needhelp"
+            android:icon="@drawable/needhelp"
+            android:title="@string/menu_needhelp" />
+        <item
+            android:id="@+id/nav_contactus"
+            android:icon="@drawable/contactus"
+            android:title="@string/menu_contactus" />
+        <item
             android:id="@+id/nav_aboutus"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/aboutus"
             android:title="@string/menu_aboutus" />
 
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/logout"
             android:title="@string/menu_logout" />
     </group>
 </menu>
