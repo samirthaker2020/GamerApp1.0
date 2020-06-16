@@ -13,6 +13,7 @@ public class Constants {
     public static final String URL_USER_REGISTER = ROOT_URL+"newuser.php";
     public static final String USER_PROFILE= ROOT_URL+"userprofile.php";
     public static final String URL_GAMELIST= ROOT_URL+"gamelist.php";
+    public static final String URL_GAMECATEGORY= ROOT_URL+"getcategory.php";
  public static final String URL_UPDATEPROFILE= ROOT_URL+"profileupdate.php";
     public static final String URL_GAMEDETAILS= ROOT_URL+"gamedetails.php";
     public static final String URL_GAMEDESCRIPTION = ROOT_URL+"gamedescription.php";

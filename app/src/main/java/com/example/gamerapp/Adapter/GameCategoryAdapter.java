@@ -22,6 +22,12 @@ import java.util.ArrayList;
 public class GameCategoryAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<GameCategory> GameCategory;
+
+    public GameCategoryAdapter(Context context, ArrayList<com.example.gamerapp.Modal.GameCategory> gameCategory) {
+        this.context = context;
+        GameCategory = gameCategory;
+    }
+
     @Override
     public int getCount() {
         return GameCategory.size();

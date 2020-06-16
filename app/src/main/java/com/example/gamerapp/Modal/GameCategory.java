@@ -3,9 +3,9 @@ package com.example.gamerapp.Modal;
 import java.io.Serializable;
 
 public class GameCategory implements Serializable {
-    String GcategotyName;
-    int GcategoryId;
-    String GcategoryImage;
+  public   String GcategotyName;
+   public int GcategoryId;
+   public String GcategoryImage;
     public String getGcategotyName() {
         return GcategotyName;
     }
