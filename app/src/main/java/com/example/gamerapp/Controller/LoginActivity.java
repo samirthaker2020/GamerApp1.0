@@ -66,16 +66,19 @@ EditText userPassword_input;
 
          sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        //check if user is logged in
 
         if (sharedpreferences.contains(uEmail)) {
             emailId_input.setText(sharedpreferences.getString(uEmail, ""));
         }
-        if (sharedpreferences.contains(uPassword)) {
+     /*   if (sharedpreferences.contains(uPassword)) {
             userPassword_input.setText(sharedpreferences.getString(uPassword, ""));
-        }
+        }*/
         if (sharedpreferences.contains(ucheck)) {
            remember.setChecked(true);
         }
+
+
 
         btnforgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +96,7 @@ EditText userPassword_input;
 
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.putString(uEmail,emailId_input.getText().toString() );
-                    editor.putString(uPassword, userPassword_input.getText().toString());
+                  //  editor.putString(uPassword, userPassword_input.getText().toString());
                     editor.putString(ucheck,"true");
                     editor.commit();
                     remember.setChecked(true);
@@ -101,7 +104,7 @@ EditText userPassword_input;
                 {
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.remove(uEmail);
-                    editor.remove(uPassword);
+                //    editor.remove(uPassword);
                     editor.remove(ucheck);
                     editor.clear();
                     editor.commit(); // commit changes
