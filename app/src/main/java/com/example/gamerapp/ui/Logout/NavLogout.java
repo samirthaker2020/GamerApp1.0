@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.R;
-import com.example.gamerapp.ui.home.HomeFragment;
 
 /**
  * A simple {@link Fragment} subclass.

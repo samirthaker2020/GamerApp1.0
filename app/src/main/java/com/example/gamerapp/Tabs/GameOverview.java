@@ -1,9 +1,6 @@
 package com.example.gamerapp.Tabs;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -13,35 +10,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.gamerapp.Adapter.GameListAdapter;
-import com.example.gamerapp.Controller.LoginActivity;
-import com.example.gamerapp.Controller.MainPage;
-import com.example.gamerapp.Modal.GameList;
 import com.example.gamerapp.Others.Constants;
-import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
-import com.example.gamerapp.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
