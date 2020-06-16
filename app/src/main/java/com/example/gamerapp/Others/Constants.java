@@ -7,7 +7,7 @@ public class Constants {
     public static String CUURENT_GAMEID=null;
     private static final String ROOT_URL = "http://www.samirthaker.info/gamerapp/API/"; //(online)   //http://192.168.2.21/gamerapp/API/ (local)
      public  static String SAMPLE_DATE="";
-    public static final String URL_FORGOTPASSWORD = ROOT_URL+"forgotpassword.php";
+    public static final String URL_FORGOTPASSWORD = ROOT_URL+"forgotpassword_1.php";
     public static final String URL_LOGIN = ROOT_URL+"userlogin.php";
     public static final String URL_PASSWORDRECOVERY = ROOT_URL+"passwordrecovery.php";
     public static final String URL_USER_REGISTER = ROOT_URL+"newuser.php";

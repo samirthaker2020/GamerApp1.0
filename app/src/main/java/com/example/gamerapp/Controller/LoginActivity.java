@@ -22,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.gamerapp.ForgotPassword;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.R;
 import com.example.gamerapp.Others.SharedPref;
@@ -34,13 +35,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-Button btnsigIn,btnsignUp;
+Button btnsigIn,btnsignUp,btnforgotPassword;
 EditText emailId_input;
 CheckBox remember;
 EditText userPassword_input;
     Vibrator v;
     //change this to match your url
     final String loginURL = Constants.URL_LOGIN;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String uEmail = "userEmail";
+    public static final String uPassword = "userPassword";
+    public static final String ucheck = "false";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,34 +62,53 @@ EditText userPassword_input;
         emailId_input=   findViewById(R.id.txtemailid);
         remember=(CheckBox) findViewById(R.id.rememberme);
         userPassword_input=  findViewById(R.id.txtpassword);
+        btnforgotPassword=(Button) findViewById(R.id.btnforgotpassword);
 
-        if(remember.isChecked()==true)
-        {
-            SharedPreferences prefs = this.getSharedPreferences("mydata", Context.MODE_PRIVATE);
-            String shemailid = prefs.getString("emailid", null);
-            emailId_input.setText(shemailid);
-            remember.setChecked(true);
-        }else
-        {
-            remember.setChecked(false);
+         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+
+        if (sharedpreferences.contains(uEmail)) {
+            emailId_input.setText(sharedpreferences.getString(uEmail, ""));
         }
+        if (sharedpreferences.contains(uPassword)) {
+            userPassword_input.setText(sharedpreferences.getString(uPassword, ""));
+        }
+        if (sharedpreferences.contains(ucheck)) {
+           remember.setChecked(true);
+        }
+
+        btnforgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
 
         btnsigIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(remember.isChecked()==true)
                 {
-                    SharedPreferences.Editor editor = getSharedPreferences("mydata", MODE_PRIVATE).edit();
-                    editor.putString("emailid", emailId_input.getText().toString());
-                    editor.apply();
+
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(uEmail,emailId_input.getText().toString() );
+                    editor.putString(uPassword, userPassword_input.getText().toString());
+                    editor.putString(ucheck,"true");
+                    editor.commit();
                     remember.setChecked(true);
                 }else
                 {
-                    SharedPreferences.Editor editor = getSharedPreferences("mydata", MODE_PRIVATE).edit();
-                    editor.putString("emailid",null);
-                    editor.apply();
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.remove(uEmail);
+                    editor.remove(uPassword);
+                    editor.remove(ucheck);
+                    editor.clear();
+                    editor.commit(); // commit changes
+
                     remember.setChecked(false);
                 }
+
 
                 validateUserData();
             }

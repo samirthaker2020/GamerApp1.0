@@ -16,8 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Controller.Game_Trailer"
-            android:parentActivityName=".Controller.MainPage"></activity>
+        <activity android:name=".Controller.RecoverPassword"
+            ></activity>
+        <activity android:name=".ForgotPassword">
+
+        </activity>
+        <activity
+            android:name=".Controller.Game_Trailer"
+            android:parentActivityName=".Controller.MainPage" />
         <activity
             android:name=".Controller.GameDetails"
             android:parentActivityName=".Controller.MainPage"
@@ -29,9 +35,7 @@
             android:name=".Controller.MainPage"
             android:label="@string/title_activity_main_page"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Controller.LoginActivity"
             android:screenOrientation="portrait" />
