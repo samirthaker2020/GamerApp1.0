@@ -140,7 +140,12 @@ public class ProfileFragment extends Fragment {
 btnupload.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        if (profileimage.getDrawable() == null) {
+           singlemsg("Invalid","select Image First");
+
+        } else {
         updateProfileImage();
+    }
     }
 });
         btnimageupload.setOnClickListener(new View.OnClickListener() {
