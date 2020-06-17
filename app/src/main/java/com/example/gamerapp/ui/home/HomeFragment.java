@@ -1,5 +1,7 @@
 package com.example.gamerapp.ui.home;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,6 +26,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gamerapp.Adapter.GameCategoryAdapter;
 import com.example.gamerapp.Adapter.GameListAdapter;
+import com.example.gamerapp.BlankFragment;
+import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Modal.GameCategory;
 import com.example.gamerapp.Modal.GameList;
 import com.example.gamerapp.Others.Constants;
@@ -55,9 +60,32 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.home_fragment, container, false);
-
+        ((MainPage) getActivity()).getSupportActionBar().setTitle("Game Categories");
         lstgamecategory = (ListView) root.findViewById(R.id.lstcategory);
         initcategorydata();
+
+       lstgamecategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //  GameList s= CustomGameList.get(position);
+                //    System.out.println(CustomGameList.get(position).getGamename());
+
+                Context context = getActivity();
+                int text =  CustomGameCategory.get(position).getGcategoryId();
+                int duration = Toast.LENGTH_SHORT;
+                Fragment fr = new HomeFragment1();
+                FragmentManager fm = getFragmentManager();
+                Bundle args = new Bundle();
+                args.putInt("pid", text);
+                fr.setArguments(args);
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment, fr).addToBackStack("HomeFragment");
+                fragmentTransaction.commit();
+                //Toast toast = Toast.makeText(context, String.valueOf(text), duration);
+               // toast.show();
+
+            }
+        });
         return root;
     }
     private void initcategorydata()

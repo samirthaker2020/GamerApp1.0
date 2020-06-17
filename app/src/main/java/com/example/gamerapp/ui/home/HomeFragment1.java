@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gamerapp.Adapter.GameListAdapter;
+import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Modal.GameList;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.R;
@@ -35,6 +36,7 @@ import java.util.List;
 
 public class HomeFragment1 extends Fragment {
     private ListView lstgamelist;  //lstsample
+    int pid;
     // Creating List of Subject class.
     List<GameList> CustomGameList; //CustomSampleNamesList;
 
@@ -50,7 +52,11 @@ public class HomeFragment1 extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel1.class);
         View root = inflater.inflate(R.layout.fragment_home1, container, false);
-
+        ((MainPage) getActivity()).getSupportActionBar().setTitle("Game List");
+        Bundle args = getArguments();
+        if (args  != null){
+            pid= args.getInt("pid");
+        }
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -81,7 +87,7 @@ public class HomeFragment1 extends Fragment {
     {
 
         // Creating StringRequest and set the JSON server URL in here.
-        StringRequest stringRequest = new StringRequest(HTTP_URL,
+        StringRequest stringRequest = new StringRequest(HTTP_URL+"?pid="+pid,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
