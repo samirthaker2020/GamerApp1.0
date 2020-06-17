@@ -4,6 +4,7 @@ package com.example.gamerapp.Others;
 public class Constants {
    public static String CURRENT_USER="";
    public static int CUURENT_USERID=0;
+    public static int CUURENT_PID=0;
     public static String CUURENT_GAMEID=null;
     private static final String ROOT_URL = "http://www.samirthaker.info/gamerapp/API/"; //(online)   //http://192.168.2.21/gamerapp/API/ (local)
      public  static String SAMPLE_DATE="";

@@ -1,14 +1,24 @@
 package com.example.gamerapp.ui.Profile;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Vibrator;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,20 +51,36 @@ import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
     final String loginURL = Constants.USER_PROFILE;
     final String userUpdateURL = Constants.URL_UPDATEPROFILE;
+    Button btnimageupload;
+    private static final String IMAGE_DIRECTORY = "/demonuts";
+    private int GALLERY = 1, CAMERA = 2;
   ToggleButton btnUpdate;
+  ImageView profileimage;
+    private static final int REQUEST_LOCATION = 1;
+    private static final int MY_CAMERA_REQUEST_CODE = 100;
   EditText edtdob;
     private profileViewModel profileViewModel;
     final Calendar myCalendar = Calendar.getInstance();
@@ -74,6 +100,8 @@ public class ProfileFragment extends Fragment {
         pFname=root.findViewById(R.id.editText_fname);
         pLname=root.findViewById(R.id.editText_lname);
         btnUpdate=root.findViewById(R.id.btn_update);
+        btnimageupload=(Button) root.findViewById(R.id.btnuploadimage);
+        profileimage=(ImageView)  root.findViewById(R.id.txtprofile_image);
 
 
         profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -105,6 +133,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
+        btnimageupload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPictureDialog();
+            }
+        });
         return root;
     }
 
@@ -123,6 +158,165 @@ public class ProfileFragment extends Fragment {
         }
 
     };
+    private void showPictureDialog(){
+        android.app.AlertDialog.Builder pictureDialog = new android.app.AlertDialog.Builder(getActivity());
+        pictureDialog.setTitle("Select Action");
+        String[] pictureDialogItems = {
+                "Select photo from gallery",
+                "Capture photo from camera" };
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                choosePhotoFromGallary();
+                                break;
+                            case 1:
+                                takePhotoFromCamera();
+                                break;
+                        }
+                    }
+                });
+        pictureDialog.show();
+    }
+    public Bitmap StringToBitMap(String encodedString){
+        try{
+            byte [] encodeByte = Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        }
+        catch(Exception e){
+            e.getMessage();
+            return null;
+        }
+    }
+    public void choosePhotoFromGallary() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(galleryIntent, GALLERY);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void takePhotoFromCamera() {
+        if (getActivity().checkSelfPermission(Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                    MY_CAMERA_REQUEST_CODE);
+        }
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent,22);
+    }
+    public String saveImage(Bitmap myBitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        myBitmap.createScaledBitmap(myBitmap,(int)(myBitmap.getWidth()*0.8), (int)(myBitmap.getHeight()*0.8), true);
+
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+        File wallpaperDirectory = new File(
+                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+        // have the object build the directory structure, if needed.
+        if (!wallpaperDirectory.exists()) {
+            wallpaperDirectory.mkdirs();
+        }
+
+        try {
+            File f = new File(wallpaperDirectory, Calendar.getInstance()
+                    .getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(getActivity(),
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
+    }
+
+    private void  requestMultiplePermissions(){
+        Dexter.withActivity(getActivity())
+                .withPermissions(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        // check if all permissions are granted
+                        if (report.areAllPermissionsGranted()) {
+                            Toast.makeText(getActivity(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            // show alert dialog navigating to Settings
+                            //openSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+                    }
+
+
+                });
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 110) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                takePhotoFromCamera();
+            }
+        }}
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == getActivity().RESULT_CANCELED) {
+            return;
+        }
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                Uri contentURI = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), contentURI);
+                    String path = saveImage(bitmap);
+                    Toast.makeText(getActivity(), "Image Saved!"+path, Toast.LENGTH_SHORT).show();
+                   profileimage.setImageBitmap(bitmap);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "Failed!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        } else if (requestCode == 22) {
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            profileimage.setImageBitmap(thumbnail);
+            saveImage(thumbnail);
+            Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
     private void updateLabel() {
         String myFormat = "dd/MM/yyyy"; //In which you need put here

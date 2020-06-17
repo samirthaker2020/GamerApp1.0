@@ -123,7 +123,7 @@ public class GameOverview extends Fragment {
                                 //getting user name
                                 Ogamename.setText("Game Name : "+ obj.getString("gamename"));
                                 Ogametype.setText( "Game Type : "+obj.getString("gametype"));
-                                Ogameplatform.setText( "Game Platform : "+obj.getString("gameplatform"));
+                                Ogameplatform.setText( "Game Platform : "+obj.getString("pname"));
                                 Picasso
                                         .get()
                                         .load(Constants.URL_IMAGES+obj.getString("gameimage"))
@@ -152,7 +152,7 @@ public class GameOverview extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("gameid", String.valueOf(Constants.CUURENT_GAMEID));
-
+                params.put("pid", String.valueOf(Constants.CUURENT_PID));
 
                 return params;
             }

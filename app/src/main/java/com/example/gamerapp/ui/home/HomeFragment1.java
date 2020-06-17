@@ -56,6 +56,7 @@ public class HomeFragment1 extends Fragment {
         Bundle args = getArguments();
         if (args  != null){
             pid= args.getInt("pid");
+            Constants.CUURENT_PID=pid;
         }
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
