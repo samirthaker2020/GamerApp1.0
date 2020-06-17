@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -74,12 +75,15 @@ import java.util.Map;
 public class ProfileFragment extends Fragment {
     final String loginURL = Constants.USER_PROFILE;
     final String userUpdateURL = Constants.URL_UPDATEPROFILE;
-    Button btnimageupload;
+    final String userProfileImage = Constants.URL_PROFILEIMAGE;
+    Button btnimageupload,btnupload;
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
   ToggleButton btnUpdate;
   ImageView profileimage;
     private static final int REQUEST_LOCATION = 1;
+    String path=null;
+    String img_str=null;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
   EditText edtdob;
     private profileViewModel profileViewModel;
@@ -102,7 +106,7 @@ public class ProfileFragment extends Fragment {
         btnUpdate=root.findViewById(R.id.btn_update);
         btnimageupload=(Button) root.findViewById(R.id.btnuploadimage);
         profileimage=(ImageView)  root.findViewById(R.id.txtprofile_image);
-
+        btnupload=(Button) root.findViewById(R.id.btnupload);
 
         profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -133,11 +137,17 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
+btnupload.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        updateProfileImage();
+    }
+});
         btnimageupload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPictureDialog();
+
             }
         });
         return root;
@@ -172,9 +182,11 @@ public class ProfileFragment extends Fragment {
                         switch (which) {
                             case 0:
                                 choosePhotoFromGallary();
+
                                 break;
                             case 1:
                                 takePhotoFromCamera();
+
                                 break;
                         }
                     }
@@ -290,7 +302,7 @@ public class ProfileFragment extends Fragment {
                 Uri contentURI = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), contentURI);
-                    String path = saveImage(bitmap);
+                     path = saveImage(bitmap);
                     Toast.makeText(getActivity(), "Image Saved!"+path, Toast.LENGTH_SHORT).show();
                    profileimage.setImageBitmap(bitmap);
 
@@ -303,8 +315,8 @@ public class ProfileFragment extends Fragment {
         } else if (requestCode == 22) {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             profileimage.setImageBitmap(thumbnail);
-            saveImage(thumbnail);
-            Toast.makeText(getActivity(), "Image Saved!", Toast.LENGTH_SHORT).show();
+            path=saveImage(thumbnail);
+            Toast.makeText(getActivity(), "Image Saved!"+path, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -394,6 +406,8 @@ public class ProfileFragment extends Fragment {
                                 String email = obj.getString("email");
                                 String contactno = obj.getString("contactno");
                                 String dob = obj.getString("dob");
+                                String profilepic = obj.getString("profilepic");
+
                                 int Userid=obj.getInt("uid");
 
                                 pFname.setText(fname);
@@ -401,6 +415,7 @@ public class ProfileFragment extends Fragment {
                                 pEmail.setText(email);
                                 pContactno.setText(contactno);
                                 pDob.setText(dob);
+                                profileimage.setImageBitmap(StringToBitMap(profilepic));
 
 
                             }
@@ -437,7 +452,7 @@ public class ProfileFragment extends Fragment {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         builder1.setMessage(msg);
         builder1.setCancelable(true);
-        builder1.setIcon(R.drawable.ic_alert_foreground);
+        builder1.setIcon(R.drawable.ic_sucess_foreground);
         builder1.setTitle(title);
         builder1.setPositiveButton(
                 "OK",
@@ -518,6 +533,83 @@ public class ProfileFragment extends Fragment {
         };
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
+
+    private void updateProfileImage() {
+
+        if (profileimage.getDrawable() == null) {
+            img_str = "error";
+
+        } else {
+
+            try {
+               Bitmap bitmap = ((BitmapDrawable) profileimage.getDrawable()).getBitmap();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.8), (int)(bitmap.getHeight()*0.8), true);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, stream);
+                byte[] byte_arr = stream.toByteArray();
+              img_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
+            }catch(Exception e){
+                img_str = "errorinconverting";
+            }
+
+        }
+
+        //Call our volley library
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,userProfileImage,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+//                            Toast.makeText(getApplicationContext(),response.toString(), Toast.LENGTH_SHORT).show();
+
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.getBoolean("error")) {
+                                // Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+                                singlemsg("Invalid",obj.getString("message"));
+                                //  email_input.setText("");
+                                //    password_input.setText("");
+                            } else {
+
+                                //getting user name
+                                //  String Username = obj.getString("username");
+                                //    Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
+                                singlemsg("SUCESS",obj.getString("message"));
+                                //storing the user in shared preferences
+                                //     SharedPref.getInstance(getApplicationContext()).storeUserName(Username);
+                                //starting the profile activity
+
+
+
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(),"Connection Error"+error, Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("uid", String.valueOf(Constants.CUURENT_USERID));
+                params.put("image", img_str);
+
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+
     public void isvalid()
     {
 

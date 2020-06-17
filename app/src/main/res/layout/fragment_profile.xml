@@ -23,20 +23,50 @@
 
     <ImageView
         android:id="@+id/txtprofile_image"
-        android:layout_width="407dp"
-        android:layout_height="113dp"
+        android:layout_width="159dp"
+        android:layout_height="159dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/border"
+        android:scaleType="fitXY"
         android:src="@mipmap/ic_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
 
+    <TextView
+        android:id="@+id/txtprofile_fname"
+        android:layout_width="148dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="192dp"
+        android:gravity="center|left"
+        android:text="First Name:"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
+
+    <TextView
+        android:id="@+id/txtprofile_emailid"
+        android:layout_width="148dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center|left"
+        android:text="Date Of Birth:"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtprofile_dob"
+        app:layout_constraintVertical_bias="0.035" />
+
     <EditText
-        android:id="@+id/editText_fname"
+        android:id="@+id/editText_lname"
         android:layout_width="230dp"
         android:layout_height="48dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/border"
         android:ems="10"
         android:enabled="false"
@@ -47,43 +77,15 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtprofile_fname"
-        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
-
-    <TextView
-        android:id="@+id/txtprofile_dob"
-        android:layout_width="148dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center|left"
-        android:text="Email:"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtprofile_contactno" />
-
-    <TextView
-        android:id="@+id/txtprofile_emailid"
-        android:layout_width="148dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center|left"
-        android:text="Date Of Birth:"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtprofile_dob"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/txtprofile_lname"
+        app:layout_constraintTop_toBottomOf="@+id/editText_fname" />
 
     <TextView
         android:id="@+id/txtprofile_contactno"
         android:layout_width="148dp"
         android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:gravity="center|left"
         android:text="Contact No:"
         android:textColor="@color/cardview_dark_background"
@@ -91,18 +93,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_lname" />
 
-    <TextView
-        android:id="@+id/txtprofile_fname"
-        android:layout_width="148dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="212dp"
-        android:gravity="center|left"
-        android:text="First Name:"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="18sp"
+    <ToggleButton
+        android:id="@+id/btn_update"
+        android:layout_width="165dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/border"
+        android:checked="false"
+        android:text="ToggleButton"
+        android:textOff="UPADTE"
+        android:textOn="SAVE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_dob"
+        app:layout_constraintVertical_bias="0.058" />
 
     <EditText
         android:id="@+id/editText_dob"
@@ -122,13 +128,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtprofile_emailid"
         app:layout_constraintTop_toBottomOf="@+id/editText_email"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <EditText
         android:id="@+id/editText_email"
         android:layout_width="230dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/border"
         android:ems="10"
         android:enabled="false"
@@ -145,8 +151,8 @@
         android:id="@+id/txtprofile_lname"
         android:layout_width="148dp"
         android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:gravity="center|left"
         android:text="Last Name:"
         android:textColor="@color/cardview_dark_background"
@@ -158,7 +164,7 @@
         android:id="@+id/editText_contactno"
         android:layout_width="230dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/border"
         android:ems="10"
         android:enabled="false"
@@ -174,10 +180,10 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_lname" />
 
     <EditText
-        android:id="@+id/editText_lname"
+        android:id="@+id/editText_fname"
         android:layout_width="230dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="192dp"
         android:background="@drawable/border"
         android:ems="10"
         android:enabled="false"
@@ -188,36 +194,52 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtprofile_lname"
-        app:layout_constraintTop_toBottomOf="@+id/editText_fname" />
+        app:layout_constraintStart_toEndOf="@+id/txtprofile_fname"
+        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
 
-    <ToggleButton
-        android:id="@+id/btn_update"
-        android:layout_width="165dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/border"
-        android:checked="false"
-        android:text="ToggleButton"
-        android:textOff="UPADTE"
-        android:textOn="SAVE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/txtprofile_dob"
+        android:layout_width="148dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center|left"
+        android:text="Email:"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_dob"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txtprofile_contactno" />
 
     <Button
         android:id="@+id/btnuploadimage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="206dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
         android:background="@color/colorPrimary"
-        android:text="Change Profile Picture"
+        android:text="Select/Capture Image"
+        android:textColor="@color/ic_appicon_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtprofile_image"
+        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
+
+    <Button
+        android:id="@+id/btnupload"
+        android:layout_width="206dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/colorPrimary"
+        android:text="UploadImage"
+        android:textColor="@color/ic_appicon_background"
         app:layout_constraintBottom_toTopOf="@+id/editText_fname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtprofile_image"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txtprofile_image"
+        app:layout_constraintTop_toBottomOf="@+id/btnuploadimage"
+        app:layout_constraintVertical_bias="0.01" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
