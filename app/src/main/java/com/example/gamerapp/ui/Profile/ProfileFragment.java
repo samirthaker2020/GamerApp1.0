@@ -229,7 +229,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.createScaledBitmap(myBitmap,(int)(myBitmap.getWidth()*0.8), (int)(myBitmap.getHeight()*0.8), true);
 
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 30, bytes);
         File wallpaperDirectory = new File(
                 Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
         // have the object build the directory structure, if needed.
