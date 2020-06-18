@@ -29,23 +29,25 @@
         android:background="@drawable/border"
         android:scaleType="fitXY"
 
+        app:layout_constraintBottom_toTopOf="@+id/txtprofile_fname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
+        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/txtprofile_fname"
         android:layout_width="148dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="17dp"
         android:gravity="center|left"
         android:text="First Name:"
         android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
+        app:layout_constraintTop_toBottomOf="@+id/txtprofile_image" />
 
     <TextView
         android:id="@+id/txtprofile_emailid"
@@ -101,7 +103,7 @@
         android:background="@drawable/border"
         android:checked="false"
         android:text="ToggleButton"
-        android:textOff="UPADTE"
+        android:textOff="update"
         android:textOn="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -211,35 +213,39 @@
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_contactno" />
 
     <Button
-        android:id="@+id/btnuploadimage"
-        android:layout_width="206dp"
-        android:layout_height="34dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/colorPrimary"
-        android:text="Select/Capture Image"
-        android:textColor="@color/ic_appicon_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtprofile_image"
-        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
-
-    <Button
         android:id="@+id/btnupload"
-        android:layout_width="206dp"
-        android:layout_height="34dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorPrimary"
+        android:padding="10dp"
         android:text="Upload  Image"
         android:textColor="@color/ic_appicon_background"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/editText_fname"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintStart_toEndOf="@+id/txtprofile_image"
         app:layout_constraintTop_toBottomOf="@+id/btnuploadimage"
-        app:layout_constraintVertical_bias="0.01" />
+        app:layout_constraintVertical_bias="0.044" />
+
+    <Button
+        android:id="@+id/btnuploadimage"
+        android:layout_width="107dp"
+        android:layout_height="47dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:text="Select Image"
+        android:textColor="@color/ic_appicon_background"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toEndOf="@+id/txtprofile_image"
+        app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
