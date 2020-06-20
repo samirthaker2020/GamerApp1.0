@@ -190,10 +190,11 @@ EditText userPassword_input;
 
                                 //getting user name
                                 String Username = obj.getString("username");
+                                Constants.PROFILE_PIC=obj.getString("profilepic");
                                 int Userid=obj.getInt("uid");
                                 Constants.CURRENT_USER=Username;
                                 Constants.CUURENT_USERID=Userid;
-                                Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
+
 
                                 //storing the user in shared preferences
                                 SharedPref.getInstance(getApplicationContext()).storeUserName(Username);

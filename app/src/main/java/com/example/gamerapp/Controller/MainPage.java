@@ -1,12 +1,17 @@
 package com.example.gamerapp.Controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.ProfileImage;
 import com.example.gamerapp.R;
 import com.example.gamerapp.Others.SharedPref;
 import com.google.android.material.navigation.NavigationView;
@@ -43,6 +48,8 @@ public class MainPage extends AppCompatActivity   implements NavigationView.OnNa
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
         //check if user is logged in
         if (!SharedPref.getInstance(this).isLoggedIn()) {
             startActivity(new Intent(this, MainActivity.class));
@@ -52,6 +59,8 @@ public class MainPage extends AppCompatActivity   implements NavigationView.OnNa
         NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView1.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.navusername);
+        ImageView navProfileImage=(ImageView) headerView.findViewById(R.id.imageView);
+        navProfileImage.setImageBitmap(ProfileImage.StringToBitMap(Constants.PROFILE_PIC));
 
         //getting logged in user name
         String loggedUsename = SharedPref.getInstance(this).LoggedInUser();

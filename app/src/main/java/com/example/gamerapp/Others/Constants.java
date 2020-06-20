@@ -3,6 +3,7 @@ package com.example.gamerapp.Others;
 
 public class Constants {
    public static String CURRENT_USER="";
+    public static String PROFILE_PIC="";
    public static int CUURENT_USERID=0;
     public static int CUURENT_PID=0;
     public static String CUURENT_GAMEID=null;

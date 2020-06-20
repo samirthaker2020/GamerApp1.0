@@ -49,6 +49,7 @@ import com.example.gamerapp.Controller.LoginActivity;
 import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Controller.SignUp;
 import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.ProfileImage;
 import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
@@ -107,6 +108,9 @@ public class ProfileFragment extends Fragment {
         btnimageupload=(Button) root.findViewById(R.id.btnuploadimage);
         profileimage=(ImageView)  root.findViewById(R.id.txtprofile_image);
         btnupload=(Button) root.findViewById(R.id.btnupload);
+profileimage.setClipToOutline(true);
+
+
 
         profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -420,7 +424,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                                 pEmail.setText(email);
                                 pContactno.setText(contactno);
                                 pDob.setText(dob);
-                                profileimage.setImageBitmap(StringToBitMap(profilepic));
+                                profileimage.setImageBitmap(ProfileImage.StringToBitMap(profilepic));
 
 
                             }

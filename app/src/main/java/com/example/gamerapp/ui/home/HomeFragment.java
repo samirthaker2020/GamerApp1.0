@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Modal.GameCategory;
 import com.example.gamerapp.Modal.GameList;
 import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.ProfileImage;
 import com.example.gamerapp.R;
 
 import org.json.JSONArray;
@@ -63,6 +65,8 @@ public class HomeFragment extends Fragment {
         ((MainPage) getActivity()).getSupportActionBar().setTitle("Game Categories");
         lstgamecategory = (ListView) root.findViewById(R.id.lstcategory);
         initcategorydata();
+
+
 
        lstgamecategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

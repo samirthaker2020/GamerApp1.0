@@ -26,7 +26,8 @@
         android:layout_width="159dp"
         android:layout_height="159dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/border"
+        android:background="@drawable/circle"
+        android:foreground="@drawable/circle"
         android:scaleType="fitXY"
 
         app:layout_constraintBottom_toTopOf="@+id/txtprofile_fname"
@@ -35,6 +36,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_username"
         app:layout_constraintVertical_bias="0.0" />
+
+
+
+
 
     <TextView
         android:id="@+id/txtprofile_fname"
