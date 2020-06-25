@@ -177,6 +177,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
         btnimageupload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 showPictureDialog();
 
             }
@@ -212,12 +213,13 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                choosePhotoFromGallary();
 
+                                choosePhotoFromGallary();
+                                btnupload.setEnabled(true);
                                 break;
                             case 1:
                                 takePhotoFromCamera();
-
+                                btnupload.setEnabled(true);
                                 break;
                         }
                     }
