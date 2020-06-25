@@ -108,7 +108,7 @@
         android:background="@drawable/border"
         android:checked="false"
         android:text="ToggleButton"
-        android:textOff="update"
+        android:textOff="UPDATE"
         android:textOn="SAVE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

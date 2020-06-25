@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.text.InputType;
@@ -37,6 +38,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -53,6 +56,8 @@ import com.example.gamerapp.Others.ProfileImage;
 import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
+import com.example.gamerapp.ui.home.HomeFragment1;
+import com.google.android.material.navigation.NavigationView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -86,6 +91,8 @@ public class ProfileFragment extends Fragment {
     String path=null;
     String img_str=null;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
+    View view;
+    LayoutInflater layoutInflater;
   EditText edtdob;
     private profileViewModel profileViewModel;
     final Calendar myCalendar = Calendar.getInstance();
@@ -109,7 +116,8 @@ public class ProfileFragment extends Fragment {
         profileimage=(ImageView)  root.findViewById(R.id.txtprofile_image);
         btnupload=(Button) root.findViewById(R.id.btnupload);
 profileimage.setClipToOutline(true);
-
+        layoutInflater = LayoutInflater.from(getActivity());
+         view = inflater.inflate(R.layout.activity_main_page, container, false);
 
 
         profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -130,12 +138,26 @@ profileimage.setClipToOutline(true);
         });
         btnUpdate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+
+
                 if (isChecked) {
                     // The toggle is enabled
+                //    StringBuilder result = new StringBuilder();
+                 //   result.append("ToggleButton1 : ").append(btnUpdate.getText());
+
+                    //Displaying the message in toast
+                //    Toast.makeText(getActivity(), result.toString(),Toast.LENGTH_LONG).show();
                btnenable();
                 } else {
                     // The toggle is disabled
+                    StringBuilder result = new StringBuilder();
+                    result.append("ToggleButton1 : ").append(btnUpdate.getText());
+
+                    //Displaying the message in toast
+               //     Toast.makeText(getActivity(), result.toString(),Toast.LENGTH_LONG).show();
                     isvalid();
+                    reloadfrg();
 
                 }
             }
@@ -389,6 +411,8 @@ btnupload.setOnClickListener(new View.OnClickListener() {
         pEmail.setEnabled(false);
         pEmail.setInputType(InputType.TYPE_NULL);
         pEmail.setFocusable(false);
+
+        btnUpdate.setChecked(false);
     }
     private void fetchuser() {
 
@@ -505,11 +529,16 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                                 //  String Username = obj.getString("username");
                                 //    Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
                                 singlemsg("SUCESS",obj.getString("message"));
-                                //storing the user in shared preferences
-                                //     SharedPref.getInstance(getApplicationContext()).storeUserName(Username);
-                                //starting the profile activity
+                                Constants.CURRENT_USER=pFname.getText().toString()+" "+pLname.getText().toString();
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        // yourMethod();
+                                        Intent intent = new Intent(getActivity(), MainPage.class);
 
-
+                                        startActivity(intent);
+                                    }
+                                }, 2000);
 
                             }
 
@@ -557,6 +586,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 40, stream);
                 byte[] byte_arr = stream.toByteArray();
               img_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
+              reloadfrg();
             }catch(Exception e){
                 img_str = "errorinconverting";
             }
@@ -584,9 +614,17 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                                 //  String Username = obj.getString("username");
                                 //    Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
                                 singlemsg("SUCESS",obj.getString("message"));
-                                //storing the user in shared preferences
-                                //     SharedPref.getInstance(getApplicationContext()).storeUserName(Username);
-                                //starting the profile activity
+                                Constants.PROFILE_PIC=img_str;
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        // yourMethod();
+                                        Intent intent = new Intent(getActivity(), MainPage.class);
+
+                                        startActivity(intent);
+                                    }
+                                }, 2000);
+
 
 
 
@@ -618,6 +656,17 @@ btnupload.setOnClickListener(new View.OnClickListener() {
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 
+    public void reloadfrg()
+    {
+
+
+        // Reload current fragment
+        Fragment fr = new ProfileFragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.nav_host_fragment, fr).addToBackStack("HomeFragment");
+        fragmentTransaction.commit();
+    }
 
     public void isvalid()
     {

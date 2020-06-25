@@ -62,9 +62,10 @@ public class MainPage extends AppCompatActivity   implements NavigationView.OnNa
         ImageView navProfileImage=(ImageView) headerView.findViewById(R.id.imageView);
         navProfileImage.setImageBitmap(ProfileImage.StringToBitMap(Constants.PROFILE_PIC));
 
+
         //getting logged in user name
         String loggedUsename = SharedPref.getInstance(this).LoggedInUser();
-        navUsername.setText("Username : "+loggedUsename);
+        navUsername.setText("Username : "+Constants.CURRENT_USER);
     }
 
 
