@@ -108,4 +108,8 @@ public class MainPage extends AppCompatActivity   implements NavigationView.OnNa
       //  drawer.closeDrawer(GravityCompat.START);
         return false;
     }
+
+    public void setActionBarTitle(String your_title) {
+        getSupportActionBar().setTitle(your_title);
+    }
 }
