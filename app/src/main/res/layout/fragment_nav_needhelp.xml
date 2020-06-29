@@ -1,14 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.NeedHelp.nav_needhelp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/hline0"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="need help" />
+        android:layout_height="2dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailid"
+        tools:ignore="MissingConstraints" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/emailid2"
+        android:layout_width="304dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="44dp"
+        android:gravity="clip_vertical|center_vertical"
+        android:text="info@gamerapp.com"
+        android:textColor="@color/cardview_dark_background"
+        android:textColorHighlight="@color/cardview_dark_background"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toEndOf="@+id/img_mail"
+        app:layout_constraintTop_toBottomOf="@+id/line0" />
+
+    <TextView
+        android:id="@+id/line4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="For any queries, feel free to contact us on:"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textColorHighlight="@color/cardview_dark_background"
+        android:textColorHint="@color/cardview_dark_background"
+        android:textColorLink="@color/cardview_dark_background"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/emailid"
+        android:layout_width="304dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="44dp"
+        android:gravity="clip_vertical|center_vertical"
+        android:text="info@gamerapp.com"
+        android:textColor="@color/cardview_dark_background"
+        android:textColorHighlight="@color/cardview_dark_background"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toEndOf="@+id/img_mail"
+        app:layout_constraintTop_toBottomOf="@+id/line0" />
+
+    <TextView
+        android:id="@+id/line0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="For any queries, feel free to contact us on:"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
+        android:textColorHighlight="@color/cardview_dark_background"
+        android:textColorHint="@color/cardview_dark_background"
+        android:textColorLink="@color/cardview_dark_background"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailid"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/img_mail"
+        android:layout_width="72dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_mail_foreground"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line0"
+        tools:src="@drawable/ic_mail_foreground" />
+
+    <ImageView
+        android:id="@+id/img_mail3"
+        android:layout_width="72dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/ic_book_foreground"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/heading2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line0"
+        tools:src="@drawable/ic_book_foreground" />
+
+    <TextView
+        android:id="@+id/heading2"
+        android:layout_width="296dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_vertical"
+        android:text="User Manual v1.0"
+        android:textAlignment="textStart"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hline0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
