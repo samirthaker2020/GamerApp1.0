@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.R;
 
 /**
@@ -60,7 +61,10 @@ public class nav_contactus extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nav_contactus, container, false);
+        View root = inflater.inflate(R.layout.fragment_nav_contactus, container, false);
+        ((MainPage) getActivity()).setActionBarTitle(getString(R.string.menu_contactus));
+
+
+        return root;
     }
 }

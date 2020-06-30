@@ -22,10 +22,7 @@
             android:id="@+id/nav_needhelp"
             android:icon="@drawable/needhelp"
             android:title="@string/menu_needhelp" />
-        <item
-            android:id="@+id/nav_contactus"
-            android:icon="@drawable/contactus"
-            android:title="@string/menu_contactus" />
+      
         <item
             android:id="@+id/nav_aboutus"
             android:icon="@drawable/aboutus"
