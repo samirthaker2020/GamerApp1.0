@@ -196,13 +196,16 @@ initsampledata();
                                 String reviewdate=jsonObject.getString("revdatetime");
                                 String fname=jsonObject.getString("fname");
                                 String lname=jsonObject.getString("lname");
+                                String readreview_userimg=jsonObject.getString("profilepic");
                                 samples.comment=comment;
                                 samples.reviewby=fname+"."+lname;
                                 samples.reviewdate=reviewdate;
+                                samples.readreview_userimage=readreview_userimg;
                             }else {
                                 samples.comment="No data";
                                 samples.reviewby= " No data";
                                 samples.reviewdate=" No data";
+                                samples.readreview_userimage="";
                             }
 
 

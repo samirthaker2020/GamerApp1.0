@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.gamerapp.Modal.GameList;
 import com.example.gamerapp.Modal.ReadReview;
+import com.example.gamerapp.Others.ProfileImage;
 import com.example.gamerapp.R;
 
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class ReadReviewAdapter extends BaseAdapter {
             viewItem.r_comment=(TextView) convertView.findViewById(R.id.review_comment);
             viewItem.r_by=(TextView) convertView.findViewById(R.id.review_by);
             viewItem.r_date=(TextView) convertView.findViewById(R.id.review_date);
+            viewItem.r_userimage=(ImageView) convertView.findViewById(R.id.readreview_user_image);
             convertView.setTag(viewItem);
 
 
@@ -64,12 +66,14 @@ public class ReadReviewAdapter extends BaseAdapter {
         }
         viewItem.r_comment.setText("Review::"+" "+ReviewArrayList.get(position).getComment());
         viewItem.r_date.setText("On::"+" "+ReviewArrayList.get(position).getReviewdate());
-        viewItem.r_by.setText("User::"+" "+ReviewArrayList.get(position).getReviewby());
+        viewItem.r_by.setText(ReviewArrayList.get(position).getReviewby());
+       viewItem.r_userimage.setImageBitmap(ProfileImage.StringToBitMap(ReviewArrayList.get(position).getReadreview_userimage()));
         return convertView;
     }
 }
 class ReviewViewItem
 {
      TextView r_comment,r_date,r_by;
+     ImageView r_userimage;
 
 }

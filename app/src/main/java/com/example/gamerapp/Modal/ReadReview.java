@@ -5,10 +5,14 @@ import java.io.Serializable;
 public class ReadReview implements Serializable {
 
    public int reviewid,gameid,uid;
-   public String comment,reviewdate,reviewby;
+   public String comment,reviewdate,reviewby,readreview_userimage;
 
     public int getReviewid() {
         return reviewid;
+    }
+
+    public String getReadreview_userimage() {
+        return readreview_userimage;
     }
 
     @Override
@@ -20,7 +24,12 @@ public class ReadReview implements Serializable {
                 ", comment='" + comment + '\'' +
                 ", reviewdate='" + reviewdate + '\'' +
                 ", reviewby='" + reviewby + '\'' +
+                ", readreview_userimage='" + readreview_userimage + '\'' +
                 '}';
+    }
+
+    public void setReadreview_userimage(String readreview_userimage) {
+        this.readreview_userimage = readreview_userimage;
     }
 
     public String getReviewby() {
