@@ -13,14 +13,14 @@
         android:layout_marginTop="44dp"
         android:gravity="clip_vertical|center_vertical"
         android:text="info@gamerapp.com"
-        android:textColor="@color/cardview_dark_background"
+        android:textColor="@color/design_default_color_primary"
         android:textColorHighlight="@color/cardview_dark_background"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toEndOf="@+id/img_mail"
-        app:layout_constraintTop_toBottomOf="@+id/line0" />
+        app:layout_constraintTop_toBottomOf="@+id/nh_title" />
 
     <TextView
         android:id="@+id/customercare"
@@ -28,18 +28,18 @@
         android:layout_height="27dp"
         android:layout_marginTop="100dp"
         android:gravity="clip_vertical|center_vertical"
-        android:text=" call - 1800-757-8989"
-        android:textColor="@color/cardview_dark_background"
+        android:text="+14168398741"
+        android:textColor="@color/design_default_color_primary"
         android:textColorHighlight="@color/cardview_dark_background"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toEndOf="@+id/img_mail"
-        app:layout_constraintTop_toBottomOf="@+id/line0" />
+        app:layout_constraintTop_toBottomOf="@+id/nh_title" />
 
     <TextView
-        android:id="@+id/line0"
+        android:id="@+id/nh_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -78,7 +78,7 @@
         android:background="@drawable/ic_book_foreground"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/heading2"
+        app:layout_constraintEnd_toStartOf="@+id/usermanual"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hline0"
@@ -86,7 +86,7 @@
         tools:src="@drawable/ic_book_foreground" />
 
     <TextView
-        android:id="@+id/heading2"
+        android:id="@+id/usermanual"
         android:layout_width="296dp"
         android:layout_height="32dp"
         android:layout_marginTop="32dp"
@@ -113,7 +113,7 @@
         tools:src="@mipmap/ic_globe" />
 
     <TextView
-        android:id="@+id/customercare2"
+        android:id="@+id/nh_weblink"
         android:layout_width="304dp"
         android:layout_height="27dp"
         android:layout_marginTop="48dp"
@@ -149,7 +149,7 @@
         android:background="@drawable/ic_mail_foreground"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line0"
+        app:layout_constraintTop_toBottomOf="@+id/nh_title"
         tools:src="@drawable/ic_mail_foreground" />
 
 

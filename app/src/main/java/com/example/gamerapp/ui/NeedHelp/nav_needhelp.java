@@ -1,14 +1,21 @@
 package com.example.gamerapp.ui.NeedHelp;
 
+import android.content.ClipDescription;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.gamerapp.Controller.MainPage;
+import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.R;
 
 /**
@@ -17,7 +24,7 @@ import com.example.gamerapp.R;
  * create an instance of this fragment.
  */
 public class nav_needhelp extends Fragment {
-
+TextView email2,customercare,nh_weblink,usermanual;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,8 +72,33 @@ public class nav_needhelp extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_nav_needhelp, container, false);
         ((MainPage) getActivity()).setActionBarTitle(getString(R.string.menu_needhelp));
+        email2=root.findViewById(R.id.emailid2);
+        usermanual=root.findViewById(R.id.usermanual);
+        customercare=root.findViewById(R.id.customercare);
+        nh_weblink=root.findViewById(R.id.nh_weblink);
+        nh_weblink.setText(Html.fromHtml("<a href=http://www.google.com> www.gamerapp.com "));
+        nh_weblink.setMovementMethod(LinkMovementMethod.getInstance());
+        usermanual.setText(Html.fromHtml("<a href=http://www.google.com> User Manual v1.0"));
+        usermanual.setMovementMethod(LinkMovementMethod.getInstance());
+        email2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("plain/text");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email2.getText().toString() });
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Support/Query//"+ Constants.CURRENT_USER + "//"+String.valueOf(Constants.CUURENT_USERID));
+                intent.putExtra(Intent.EXTRA_TEXT, "Dear Support Team,");
+                startActivity(Intent.createChooser(intent, ""));
+            }
+        });
 
-
+        customercare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + customercare.getText().toString()));// Initiates the Intent
+                startActivity(intent);
+            }
+        });
         return root;
     }
 }
