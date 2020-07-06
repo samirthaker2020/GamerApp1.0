@@ -39,6 +39,7 @@ Button btnsigIn,btnsignUp,btnforgotPassword;
 EditText emailId_input;
 CheckBox remember;
 EditText userPassword_input;
+
     Vibrator v;
     //change this to match your url
     final String loginURL = Constants.URL_LOGIN;
@@ -51,12 +52,14 @@ EditText userPassword_input;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         // hide the title bar
         getSupportActionBar().hide();
         //enable full screen
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         btnsigIn= (Button) findViewById(R.id.btn_signin);
         btnsignUp=(Button) findViewById(R.id.btnsignup);
         emailId_input=   findViewById(R.id.txtemailid);
@@ -232,7 +235,21 @@ EditText userPassword_input;
         };
         VolleySingleton.getInstance(LoginActivity.this).addToRequestQueue(stringRequest);
     }
-
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        //This is used to hide/show 'Status Bar' & 'System Bar'. Swip bar to get it as visible.
+        View decorView = getWindow().getDecorView();
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+    }
 
     public void singlemsg(String title,String msg)
     {
