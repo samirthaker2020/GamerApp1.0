@@ -16,59 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username_text_input_layout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uemail"
-        app:passwordToggleEnabled="true"
-        tools:ignore="MissingConstraints">
-
-        <EditText
-            android:id="@+id/upassword"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/border"
-            android:ems="10"
-            android:hint="Enter your password"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username_text_input_layout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/ucontactno"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_text_input_layout1"
-        app:passwordToggleEnabled="true"
-        tools:ignore="MissingConstraints">
-
-        <EditText
-            android:id="@+id/urepassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/border"
-            android:ems="10"
-            android:hint="Re-Enter your password"
-            android:inputType="textPassword" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <TextView
         android:id="@+id/signup_title"
         android:layout_width="match_parent"
@@ -84,118 +31,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signuptopborder" />
 
-    <EditText
-        android:id="@+id/ufname"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_text_input_layout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:hint="Enter First Name"
-        android:inputType="textPersonName"
-        android:textColor="@color/cardview_dark_background"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/username_text_input_layout4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_title" />
 
-    <EditText
-        android:id="@+id/ulname"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_title"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/ufname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+
+            android:ems="20"
+            android:hint="Enter your firstname"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_text_input_layout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:hint="Enter Last Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ufname" />
 
-    <EditText
-        android:id="@+id/uemail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:hint="Enter Email id"
-        android:inputType="textEmailAddress"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ulname" />
+        app:layout_constraintTop_toBottomOf="@+id/username_text_input_layout3"
+        tools:ignore="MissingConstraints">
 
-    <EditText
-        android:id="@+id/ucontactno"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="11dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:hint="Enter Phone Number"
-        android:inputType="numberSigned"
-        android:maxLength="10"
-        app:layout_constraintBottom_toTopOf="@+id/udob"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_text_input_layout2" />
+        <EditText
+            android:id="@+id/ulname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
 
-    <EditText
-        android:id="@+id/udob"
-        android:layout_width="181dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="52dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:hint="Your BirthDate"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ucontactno" />
-
-    <TextView
-        android:id="@+id/txtdob"
-        android:layout_width="91dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="D.O.B:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnregister"
-        app:layout_constraintEnd_toStartOf="@+id/udob"
-        app:layout_constraintHorizontal_bias="0.563"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ucontactno"
-        app:layout_constraintVertical_bias="0.163" />
-
-    <Button
-        android:id="@+id/btnregister"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="334dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/oval"
-        android:text="Sign Up"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.415"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/udob"
-        app:layout_constraintVertical_bias="0.0" />
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:ems="20"
+            android:hint="Enter your lastname"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
