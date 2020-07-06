@@ -56,7 +56,7 @@ public class SignUp extends AppCompatActivity {
         ufname=(EditText) findViewById(R.id.ufname);
         ulname=(EditText) findViewById(R.id.ulname);
         uemail=(EditText) findViewById(R.id.uemail);
-        upassword=(EditText) findViewById(R.id.upassword);
+        upassword=(EditText) findViewById(R.id.txtpassword);
         urepassword=(EditText) findViewById(R.id.urepassword);
         ucontactno=(EditText) findViewById(R.id.ucontactno);
         udob=(EditText) findViewById(R.id.udob);
