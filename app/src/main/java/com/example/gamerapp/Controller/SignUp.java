@@ -26,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.R;
 import com.example.gamerapp.Others.VolleySingleton;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +39,7 @@ import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
     EditText dob;
+    TextInputLayout t3,t4,t5,t6,t7,t8;
     Button btnregister;
     final String signupURL = Constants.URL_USER_REGISTER;
     EditText ufname,ulname,uemail,upassword,urepassword,ucontactno,udob;
@@ -56,11 +58,17 @@ public class SignUp extends AppCompatActivity {
         ufname=(EditText) findViewById(R.id.ufname);
         ulname=(EditText) findViewById(R.id.ulname);
         uemail=(EditText) findViewById(R.id.uemail);
-        upassword=(EditText) findViewById(R.id.txtpassword);
+        upassword=(EditText) findViewById(R.id.upassword);
         urepassword=(EditText) findViewById(R.id.urepassword);
         ucontactno=(EditText) findViewById(R.id.ucontactno);
         udob=(EditText) findViewById(R.id.udob);
         btnregister=(Button) findViewById(R.id.btnregister);
+        t3=(TextInputLayout) findViewById(R.id.username_text_input_layout3);
+        t4=(TextInputLayout) findViewById(R.id.username_text_input_layout4);
+        t5=(TextInputLayout) findViewById(R.id.username_text_input_layout5);
+        t6=(TextInputLayout) findViewById(R.id.username_text_input_layout6);
+        t7=(TextInputLayout) findViewById(R.id.username_text_input_layout7);
+        t8=(TextInputLayout) findViewById(R.id.username_text_input_layout8);
         dob.setShowSoftInputOnFocus(false);
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +84,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 isvalid();
+
             }
         });
 
@@ -83,9 +92,9 @@ isvalid();
     }
     public void isvalid()
     {
-
+        System.out.println(uemail.getText().toString());
         //checking if email is empty
-        if (TextUtils.isEmpty(uemail.getText().toString()) || TextUtils.isEmpty(ufname.getText().toString()) || TextUtils.isEmpty(ulname.getText().toString()) || TextUtils.isEmpty(upassword.getText().toString()) || TextUtils.isEmpty(urepassword.getText().toString()) || TextUtils.isEmpty(ucontactno.getText().toString()) || TextUtils.isEmpty(udob.getText().toString()))
+        if (TextUtils.isEmpty(t3.getEditText().getText().toString()) || TextUtils.isEmpty(t4.getEditText().getText().toString()) || TextUtils.isEmpty(t5.getEditText().getText().toString()) || TextUtils.isEmpty(t6.getEditText().getText().toString()) || TextUtils.isEmpty(t7.getEditText().getText().toString()) || TextUtils.isEmpty(t8.getEditText().getText().toString()) || TextUtils.isEmpty(udob.getText().toString()))
         {
             singlemsg("Invalid" ,"Enter All Feilds First");
 
@@ -93,12 +102,12 @@ isvalid();
             return;
         }
         //validating email
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(uemail.getText().toString()).matches()) {
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(t5.getEditText().getText().toString()).matches()) {
             singlemsg("Invalid" ,"Enter valid Email Address");
             btnregister.setEnabled(true);
             return;
         }
-        if ( upassword.getText().toString().equals (urepassword.getText().toString())) {
+        if ( t6.getEditText().getText().toString().equals (t7.getEditText().getText().toString())) {
 
         }else {
             singlemsg("Invalid" ,"Password Does not Match");
