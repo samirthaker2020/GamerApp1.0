@@ -52,9 +52,10 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-
+            android:drawableLeft="@drawable/ic_reg_person"
+            android:paddingLeft="10dp"
             android:ems="20"
-            android:hint="Enter your firstname"
+            android:hint="  Enter your firstname"
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -77,11 +78,12 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-
+            android:drawableLeft="@drawable/ic_reg_person"
+            android:paddingLeft="10dp"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:ems="20"
-            android:hint="Enter your lastname"
+            android:hint="  Enter your lastname"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,6 +91,7 @@
         android:id="@+id/username_text_input_layout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
 
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -103,11 +106,12 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-
+            android:drawableLeft="@drawable/ic_reg_email"
+            android:paddingLeft="10dp"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:ems="20"
-            android:hint="Enter your email ID"
+            android:hint="  Enter your email ID"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,6 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_text_input_layout5"
@@ -129,9 +134,10 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-
+            android:drawableStart="@drawable/ic_reg_password"
+            android:paddingLeft="10dp"
             android:ems="10"
-            android:hint="Enter your password"
+            android:hint="  Enter your password"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -154,9 +160,10 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-
+            android:drawableStart="@drawable/ic_reg_password"
+            android:paddingLeft="10dp"
             android:ems="10"
-            android:hint="Confirm your password"
+            android:hint="  Confirm your password"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -181,9 +188,10 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="11dp"
-
+            android:drawableStart="@drawable/ic_reg_phone"
+            android:paddingLeft="10dp"
             android:ems="10"
-            android:hint="Enter Phone Number"
+            android:hint="  Enter Phone Number"
             android:inputType="numberSigned"
             android:maxLength="10" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -193,10 +201,11 @@
         android:id="@+id/udob"
         android:layout_width="383dp"
         android:layout_height="46dp"
-
+        android:drawableStart="@drawable/ic_reg_birth"
+        android:paddingLeft="10dp"
         android:layout_marginStart="10dp"
         android:ems="10"
-        android:hint="Enter your date of birth"
+        android:hint="  Enter your date of birth"
         android:inputType="date"
         android:maxLength="10"
         app:layout_constraintBottom_toTopOf="@+id/btnregister"
@@ -213,7 +222,7 @@
         android:layout_height="62dp"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="39dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="168dp"
 
         android:background="@drawable/oval"
         android:text="Sign Up"
@@ -221,5 +230,21 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btncancel"
+        android:layout_width="334dp"
+        android:layout_height="62dp"
+        android:background="@drawable/oval"
+        android:text="@android:string/cancel"
+        android:textColor="@color/ic_appicon_background"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnregister"
+        app:layout_constraintVertical_bias="0.32" />
 </androidx.constraintlayout.widget.ConstraintLayout>

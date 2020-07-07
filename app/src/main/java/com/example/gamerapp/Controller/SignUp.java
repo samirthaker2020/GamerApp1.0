@@ -40,7 +40,7 @@ import java.util.Map;
 public class SignUp extends AppCompatActivity {
     EditText dob;
     TextInputLayout t3,t4,t5,t6,t7,t8;
-    Button btnregister;
+    Button btnregister,btncancel;
     final String signupURL = Constants.URL_USER_REGISTER;
     EditText ufname,ulname,uemail,upassword,urepassword,ucontactno,udob;
     final Calendar myCalendar = Calendar.getInstance();
@@ -63,6 +63,7 @@ public class SignUp extends AppCompatActivity {
         ucontactno=(EditText) findViewById(R.id.ucontactno);
         udob=(EditText) findViewById(R.id.udob);
         btnregister=(Button) findViewById(R.id.btnregister);
+        btncancel=(Button) findViewById(R.id.btncancel);
         t3=(TextInputLayout) findViewById(R.id.username_text_input_layout3);
         t4=(TextInputLayout) findViewById(R.id.username_text_input_layout4);
         t5=(TextInputLayout) findViewById(R.id.username_text_input_layout5);
@@ -79,6 +80,14 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+        btncancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(SignUp.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
