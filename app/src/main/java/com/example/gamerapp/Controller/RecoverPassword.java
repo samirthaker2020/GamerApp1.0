@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.gamerapp.ForgotPassword;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
@@ -34,7 +35,7 @@ public class RecoverPassword extends AppCompatActivity {
     String  PrecoveryUser;
     EditText pass0,pass1;
     TextView userTitle;
-    Button btnupdatepassword;
+    Button btnupdatepassword,btnrecover_password;
     final String PrecoveryURL = Constants.URL_PASSWORDRECOVERY;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +50,21 @@ public class RecoverPassword extends AppCompatActivity {
             pass0=(EditText) findViewById(R.id.recPassword0);
             pass1=(EditText) findViewById(R.id.recPassword1);
             btnupdatepassword=(Button) findViewById(R.id.btnrecovery);
-
+btnrecover_password=(Button) findViewById(R.id.btncancel_recoverpassword);
             btnupdatepassword.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 validate();
                 }
             });
-
+btnrecover_password.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        finish();
+        Intent intent = new Intent(RecoverPassword.this, MainActivity.class);
+        startActivity(intent);
+    }
+});
         }
 
     public void validate()
