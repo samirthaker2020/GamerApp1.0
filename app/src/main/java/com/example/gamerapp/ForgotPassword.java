@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gamerapp.Controller.LoginActivity;
+import com.example.gamerapp.Controller.MainActivity;
 import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Controller.RecoverPassword;
 import com.example.gamerapp.Others.Constants;
@@ -33,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ForgotPassword extends AppCompatActivity {
-    Button btnforgotpassword;
+    Button btnforgotpassword,btncancel_fp;
 
     EditText Femailid;
     final String forgotpasswordURL = Constants.URL_FORGOTPASSWORD;
@@ -47,14 +48,22 @@ public class ForgotPassword extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Femailid=(EditText) findViewById(R.id.EditText_ForgotEmailid);
         btnforgotpassword =(Button) findViewById(R.id.btnforgotpassword);
-
+        btncancel_fp=(Button) findViewById(R.id.btncancel_fp);
         btnforgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validateUserData();
             }
         });
+btncancel_fp.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        finish();
+        Intent intent = new Intent(ForgotPassword.this, MainActivity.class);
+        startActivity(intent);
 
+    }
+});
     }
 
     private void validateUserData() {
