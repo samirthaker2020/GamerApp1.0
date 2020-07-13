@@ -3,6 +3,7 @@ package com.example.gamerapp.Controller;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gamerapp.ForgotPassword;
 import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.DialogMessage;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
 
@@ -92,41 +94,15 @@ btnrecover_password.setOnClickListener(new View.OnClickListener() {
             updatepassword();
         }else
         {
-            singlemsg("Invalid","Password does not match! try Again",1);
+          //  singlemsg("Invalid","Password does not match! try Again",1);
+            singlemsg("Invalid","Password does not match! Try Again",RecoverPassword.this,false);
             System.out.println(pass0.getText().toString());
             System.out.println(pass1.getText().toString());
         }
     }
-    public void singlemsg(String title,String msg,int no)
+    public void singlemsg(String title, String msg, Context c, boolean type)
     {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(RecoverPassword.this);
-        builder1.setMessage(msg);
-        builder1.setCancelable(true);
-        if(no==1) {
-            builder1.setIcon(R.drawable.ic_alert_foreground);
-        }else if(no==0)
-        {
-            builder1.setIcon(R.drawable.ic_sucess_foreground);
-        }
-        builder1.setTitle(title);
-        builder1.setPositiveButton(
-                "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-      /*  builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });*/
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+        DialogMessage.singlemsg(title,msg,c,type);
     }
 
     public void updatepassword()
@@ -144,12 +120,14 @@ btnrecover_password.setOnClickListener(new View.OnClickListener() {
                             JSONObject obj = new JSONObject(response);
                             if (obj.getBoolean("error")) {
                                 //  Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                singlemsg("Invalid",obj.getString("message"),1);
+                              //  singlemsg("Invalid",obj.getString("message"),1);
+                                singlemsg("Invalid",obj.getString("message"),RecoverPassword.this,false);
                                 pass0.setText("");
                                 pass1.setText("");
                             } else {
 
-                                singlemsg("Sucess","Password Updated Sucessfully",0);
+                              //  singlemsg("Sucess","Password Updated Sucessfully",0);
+                                singlemsg("Invalid","Password updated Sucessfully",RecoverPassword.this,true);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     public void run() {
