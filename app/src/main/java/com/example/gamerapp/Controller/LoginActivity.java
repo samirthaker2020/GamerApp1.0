@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gamerapp.ForgotPassword;
 import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.DialogMessage;
 import com.example.gamerapp.R;
 import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.Others.VolleySingleton;
@@ -186,7 +187,7 @@ EditText userPassword_input;
                             JSONObject obj = new JSONObject(response);
                             if (obj.getBoolean("error")) {
                                 //  Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                singlemsg("Invalid",obj.getString("message"));
+                                singlemsg("Invalid",obj.getString("message"),LoginActivity.this,false);
                                 emailId_input.setText("");
                                 userPassword_input.setText("");
                             } else {
@@ -251,30 +252,8 @@ EditText userPassword_input;
         }
     }
 
-    public void singlemsg(String title,String msg)
+    public void singlemsg(String title, String msg, Context c, boolean type)
     {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage(msg);
-        builder1.setCancelable(true);
-        builder1.setIcon(R.drawable.ic_alert_foreground);
-        builder1.setTitle(title);
-        builder1.setPositiveButton(
-                "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-      /*  builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });*/
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+        DialogMessage.singlemsg(title,msg,c,type);
     }
 }
