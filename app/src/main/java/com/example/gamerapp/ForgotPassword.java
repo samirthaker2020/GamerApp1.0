@@ -3,6 +3,7 @@ package com.example.gamerapp;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.example.gamerapp.Controller.MainActivity;
 import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Controller.RecoverPassword;
 import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.DialogMessage;
 import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.Others.VolleySingleton;
 
@@ -94,8 +96,8 @@ btncancel_fp.setOnClickListener(new View.OnClickListener() {
 
                             JSONObject obj = new JSONObject(response);
                             if (obj.getBoolean("error")) {
-                                //  Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                singlemsg("Invalid",obj.getString("msg"));
+                             //     Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                singlemsg("Invalid",obj.getString("msg"),ForgotPassword.this,false);
                                 Femailid.setText("");
 
                             } else {
@@ -108,7 +110,6 @@ btncancel_fp.setOnClickListener(new View.OnClickListener() {
                                // Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(ForgotPassword.this, RecoverPassword.class);
-
                                 startActivity(intent);
                                 finish();
 
@@ -143,30 +144,8 @@ btncancel_fp.setOnClickListener(new View.OnClickListener() {
     }
 
 
-    public void singlemsg(String title,String msg)
+    public void singlemsg(String title, String msg, Context c, boolean type)
     {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage(msg);
-        builder1.setCancelable(true);
-        builder1.setIcon(R.drawable.ic_alert_foreground);
-        builder1.setTitle(title);
-        builder1.setPositiveButton(
-                "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-      /*  builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });*/
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+        DialogMessage.singlemsg(title,msg,c,type);
     }
 }
