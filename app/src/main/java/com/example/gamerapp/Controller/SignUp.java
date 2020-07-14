@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -24,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.DialogMessage;
 import com.example.gamerapp.R;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -43,6 +45,7 @@ public class SignUp extends AppCompatActivity {
     Button btnregister,btncancel;
     final String signupURL = Constants.URL_USER_REGISTER;
     EditText ufname,ulname,uemail,upassword,urepassword,ucontactno,udob;
+
     final Calendar myCalendar = Calendar.getInstance();
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -70,13 +73,32 @@ public class SignUp extends AppCompatActivity {
         t6=(TextInputLayout) findViewById(R.id.username_text_input_layout6);
         t7=(TextInputLayout) findViewById(R.id.username_text_input_layout7);
         t8=(TextInputLayout) findViewById(R.id.username_text_input_layout8);
+
+        final DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
         dob.setShowSoftInputOnFocus(false);
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(SignUp.this, date, myCalendar
+                DatePickerDialog datePickerDialog=new DatePickerDialog(SignUp.this, dateListener, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+
+                //following line to restrict future date selection
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+                datePickerDialog.show();
+
             }
         });
 
@@ -101,25 +123,33 @@ isvalid();
     }
     public void isvalid()
     {
-        System.out.println(uemail.getText().toString());
+        if (ucontactno.getText().toString().trim().length() < 10) {
+            singlemsg("Invalid","Enter a valid contact number",SignUp.this,false);
+
+            btnregister.setEnabled(true);
+            return;
+        }
+
         //checking if email is empty
         if (TextUtils.isEmpty(t3.getEditText().getText().toString()) || TextUtils.isEmpty(t4.getEditText().getText().toString()) || TextUtils.isEmpty(t5.getEditText().getText().toString()) || TextUtils.isEmpty(t6.getEditText().getText().toString()) || TextUtils.isEmpty(t7.getEditText().getText().toString()) || TextUtils.isEmpty(t8.getEditText().getText().toString()) || TextUtils.isEmpty(udob.getText().toString()))
         {
-            singlemsg("Invalid" ,"Enter All Feilds First");
+
+            singlemsg("Invalid","Enter All Feilds First",SignUp.this,false);
 
             btnregister.setEnabled(true);
             return;
         }
         //validating email
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(t5.getEditText().getText().toString()).matches()) {
-            singlemsg("Invalid" ,"Enter valid Email Address");
+            singlemsg("Invalid","Please enter valid Email address",SignUp.this,false);
             btnregister.setEnabled(true);
             return;
         }
         if ( t6.getEditText().getText().toString().equals (t7.getEditText().getText().toString())) {
 
         }else {
-            singlemsg("Invalid" ,"Password Does not Match");
+
+            singlemsg("Invalid","Password does not match",SignUp.this,false);
             btnregister.setEnabled(true);
             return;
         }
@@ -146,7 +176,7 @@ isvalid();
                             JSONObject obj = new JSONObject(response);
                             if (obj.getBoolean("error")) {
                                 // Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-                                singlemsg("Invalid",obj.getString("message"));
+                                singlemsg("Invalid",obj.getString("message"),SignUp.this,false);
                                 //  email_input.setText("");
                                 //    password_input.setText("");
                             } else {
@@ -154,7 +184,7 @@ isvalid();
                                 //getting user name
                                 //  String Username = obj.getString("username");
                                 //    Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
-                                singlemsg("SUCESS",obj.getString("message"));
+                                singlemsg("SUCESS",obj.getString("message"),SignUp.this,true);
                                 //storing the user in shared preferences
                                 //     SharedPref.getInstance(getApplicationContext()).storeUserName(Username);
                                 //starting the profile activity
@@ -196,33 +226,10 @@ isvalid();
         VolleySingleton.getInstance(SignUp.this).addToRequestQueue(stringRequest);
     }
 
-    public void singlemsg(String title,String msg)
+    public void singlemsg(String title, String msg, Context c, boolean type)
     {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage(msg);
-        builder1.setCancelable(true);
-        builder1.setIcon(R.drawable.ic_sucess_foreground);
-        builder1.setTitle(title);
-        builder1.setPositiveButton(
-                "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-      /*  builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });*/
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+        DialogMessage.singlemsg(title,msg,c,type);
     }
-
 
     final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
