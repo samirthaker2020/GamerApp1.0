@@ -47,6 +47,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="17dp"
+
         android:gravity="center|left"
         android:text="First Name:"
         android:textColor="@color/cardview_dark_background"
@@ -75,6 +76,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/border"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:ems="10"
         android:enabled="false"
         android:fontFamily="monospace"
@@ -95,7 +97,9 @@
         android:layout_marginTop="12dp"
         android:gravity="center|left"
         android:text="Contact No:"
+        android:inputType="numberSigned"
         android:textColor="@color/cardview_dark_background"
+
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_lname" />
@@ -161,30 +165,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:gravity="center|left"
+
         android:text="Last Name:"
         android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_fname" />
-
-    <EditText
-        android:id="@+id/editText_contactno"
-        android:layout_width="230dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:enabled="false"
-        android:fontFamily="monospace"
-        android:inputType="numberSigned"
-        android:maxLength="10"
-        android:text="Name"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/txtprofile_contactno"
-        app:layout_constraintTop_toBottomOf="@+id/editText_lname" />
 
     <EditText
         android:id="@+id/editText_fname"
@@ -194,6 +180,7 @@
         android:background="@drawable/border"
         android:ems="10"
         android:enabled="false"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:fontFamily="monospace"
         android:inputType="textPersonName"
         android:text="Name"
@@ -253,5 +240,23 @@
         app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toEndOf="@+id/txtprofile_image"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_username" />
+
+    <EditText
+        android:id="@+id/editText_contactno"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="Enter Phone Number"
+        android:inputType="number|textVisiblePassword"
+        android:maxLength="10"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/txtprofile_contactno"
+        app:layout_constraintTop_toBottomOf="@+id/editText_lname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

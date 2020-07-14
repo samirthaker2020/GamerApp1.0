@@ -17,8 +17,12 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.MediaStore;
+import android.text.InputFilter;
 import android.text.InputType;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.DigitsKeyListener;
+import android.text.method.KeyListener;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +56,7 @@ import com.example.gamerapp.Controller.LoginActivity;
 import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Controller.SignUp;
 import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.DialogMessage;
 import com.example.gamerapp.Others.ProfileImage;
 import com.example.gamerapp.Others.SharedPref;
 import com.example.gamerapp.Others.VolleySingleton;
@@ -112,9 +117,33 @@ public class ProfileFragment extends Fragment {
         pFname=root.findViewById(R.id.editText_fname);
         pLname=root.findViewById(R.id.editText_lname);
         btnUpdate=root.findViewById(R.id.btn_update);
+        pContactno.setInputType(InputType.TYPE_CLASS_NUMBER);
         btnimageupload=(Button) root.findViewById(R.id.btnuploadimage);
         profileimage=(ImageView)  root.findViewById(R.id.txtprofile_image);
         btnupload=(Button) root.findViewById(R.id.btnupload);
+        KeyListener keyListener = DigitsKeyListener.getInstance("1234567890");
+       pContactno.setKeyListener(keyListener);
+       pFname.setFilters(new InputFilter[] {
+                new InputFilter() {
+                    public CharSequence filter(CharSequence src, int start,
+                                               int end, Spanned dst, int dstart, int dend) {
+                        if(src.toString().matches("[a-zA-Z ]+")){
+                            return src;
+                        }
+                        return "";
+                    }
+                }});
+        pLname.setFilters(new InputFilter[] {
+                new InputFilter() {
+                    public CharSequence filter(CharSequence src, int start,
+                                               int end, Spanned dst, int dstart, int dend) {
+                        if(src.toString().matches("[a-zA-Z ]+")){
+                            return src;
+                        }
+                        return "";
+                    }
+                }});
+
 profileimage.setClipToOutline(true);
         layoutInflater = LayoutInflater.from(getActivity());
          view = inflater.inflate(R.layout.activity_main_page, container, false);
@@ -127,13 +156,30 @@ profileimage.setClipToOutline(true);
             }
         });
         fetchuser();
+        final DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
         pDob.setShowSoftInputOnFocus(false);
         pDob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(getActivity(), date, myCalendar
+                DatePickerDialog datePickerDialog=new DatePickerDialog(getActivity(), dateListener, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+
+                //following line to restrict future date selection
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+                datePickerDialog.show();
             }
         });
         btnUpdate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -157,7 +203,7 @@ profileimage.setClipToOutline(true);
                     //Displaying the message in toast
                //     Toast.makeText(getActivity(), result.toString(),Toast.LENGTH_LONG).show();
                     isvalid();
-                    reloadfrg();
+
 
                 }
             }
@@ -167,7 +213,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         if (profileimage.getDrawable() == null) {
-           singlemsg("Invalid","select Image First");
+            singlemsg("Invalid","Please select image first",getActivity(),false);
 
         } else {
         updateProfileImage();
@@ -381,7 +427,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
         pLname.setFocusable(true);
 
         pContactno.setEnabled(true);
-        pContactno.setInputType(InputType.TYPE_CLASS_TEXT);
+        pContactno.setInputType(InputType.TYPE_CLASS_NUMBER);
         pContactno.setFocusable(true);
 
         pDob.setEnabled(true);
@@ -431,7 +477,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                             JSONObject obj = new JSONObject(response);
                             if (obj.getBoolean("error")) {
                                 //  Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                singlemsg("Invalid",obj.getString("message"));
+                                singlemsg("Invalid",obj.getString("message"),getActivity(),false);
 
                             } else {
 
@@ -482,31 +528,9 @@ btnupload.setOnClickListener(new View.OnClickListener() {
     }
 
 
-    public void singlemsg(String title,String msg)
+    public void singlemsg(String title, String msg, Context c, boolean type)
     {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-        builder1.setMessage(msg);
-        builder1.setCancelable(true);
-        builder1.setIcon(R.drawable.ic_sucess_foreground);
-        builder1.setTitle(title);
-        builder1.setPositiveButton(
-                "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-      /*  builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });*/
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
+        DialogMessage.singlemsg(title,msg,c,type);
     }
 
     private void updateUser() {
@@ -522,7 +546,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                             JSONObject obj = new JSONObject(response);
                             if (obj.getBoolean("error")) {
                                 // Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-                                singlemsg("Invalid",obj.getString("message"));
+                                singlemsg("Invalid",obj.getString("message"),getActivity(),false);
                                 //  email_input.setText("");
                                 //    password_input.setText("");
                             } else {
@@ -530,7 +554,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                                 //getting user name
                                 //  String Username = obj.getString("username");
                                 //    Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
-                                singlemsg("SUCESS",obj.getString("message"));
+                                singlemsg("SUCESS",obj.getString("message"),getActivity(),true);
                                 Constants.CURRENT_USER=pFname.getText().toString()+" "+pLname.getText().toString();
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -607,7 +631,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                             JSONObject obj = new JSONObject(response);
                             if (obj.getBoolean("error")) {
                                 // Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-                                singlemsg("Invalid",obj.getString("message"));
+                                singlemsg("Invalid",obj.getString("message"),getActivity(),false);
                                 //  email_input.setText("");
                                 //    password_input.setText("");
                             } else {
@@ -615,7 +639,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
                                 //getting user name
                                 //  String Username = obj.getString("username");
                                 //    Toast.makeText(getApplicationContext(),Username, Toast.LENGTH_SHORT).show();
-                                singlemsg("SUCESS",obj.getString("message"));
+                                singlemsg("SUCESS",obj.getString("message"),getActivity(),true);
                                 Constants.PROFILE_PIC=img_str;
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -672,9 +696,17 @@ btnupload.setOnClickListener(new View.OnClickListener() {
 
     public void isvalid()
     {
+        if (pContactno.getText().toString().trim().length() < 10) {
 
+
+            pContactno.setError("Please enter your valid 10 digit number");
+            pContactno.requestFocus();
+            btnUpdate.setChecked(true);
+            btnUpdate.setTextOn("SAVE");
+            btnenable();
+        }
         //checking if email is empty
-        if (TextUtils.isEmpty(pFname.getText().toString())) {
+       else if (TextUtils.isEmpty(pFname.getText().toString())) {
             pFname.setError("Please enter your FirstName");
             pFname.requestFocus();
 
@@ -721,6 +753,7 @@ btnupload.setOnClickListener(new View.OnClickListener() {
         {
             updateUser();
             btndisable();
+            reloadfrg();
         }
     }
 }
