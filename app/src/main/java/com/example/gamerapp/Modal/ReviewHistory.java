@@ -2,7 +2,13 @@ package com.example.gamerapp.Modal;
 
 public class ReviewHistory {
     public int reviewid,gameid,uid;
+    public double rating;
     public String comment,reviewdate,reviewby,gamename;
+
+
+    public double getRating() {
+        return rating;
+    }
 
     @Override
     public String toString() {
@@ -10,11 +16,16 @@ public class ReviewHistory {
                 "reviewid=" + reviewid +
                 ", gameid=" + gameid +
                 ", uid=" + uid +
+                ", rating=" + rating +
                 ", comment='" + comment + '\'' +
                 ", reviewdate='" + reviewdate + '\'' +
                 ", reviewby='" + reviewby + '\'' +
                 ", gamename='" + gamename + '\'' +
                 '}';
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public int getReviewid() {

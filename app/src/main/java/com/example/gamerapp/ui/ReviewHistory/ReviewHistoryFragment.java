@@ -150,14 +150,17 @@ initsampledata();
                                 String comment=jsonObject.getString("comments");
                                 String reviewdate=jsonObject.getString("revdatetime");
                                 String gamename=jsonObject.getString("gamename");
+                                double rating=jsonObject.getDouble("gamerating");
 
                                 samples.comment=comment;
                               samples.gamename=gamename;
                                 samples.reviewdate=reviewdate;
+                                samples.rating=rating;
                             }else {
                                 samples.comment="No data";
                                 samples.reviewby= " No data";
                                 samples.reviewdate=" No data";
+                                samples.rating=0;
                             }
 
 
