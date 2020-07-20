@@ -54,8 +54,11 @@ public class ReviewHistoryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_reviewhistory, container, false);
         lstreviewhistory = (ListView) root.findViewById(R.id.lst_reviewhistory);
 initsampledata();
+
+
         return root;
     }
+
 
 
     private void initsampledata()

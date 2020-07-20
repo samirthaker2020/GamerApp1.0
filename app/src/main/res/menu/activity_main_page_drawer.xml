@@ -21,6 +21,10 @@
             android:icon="@drawable/review"
             android:title="@string/menu_reviewhistory" />
         <item
+            android:id="@+id/nav_mylocation"
+            android:icon="@drawable/ic_location_foreground"
+            android:title="@string/menu_mylocation" />
+        <item
             android:id="@+id/nav_needhelp"
             android:icon="@drawable/needhelp"
             android:title="@string/menu_needhelp" />

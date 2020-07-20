@@ -10,4 +10,6 @@
     <color name="red">#CB4335</color>
     <color name="redlight">#ff8989</color>
     <color name="red1">#9d0000</color>
+    <color name="lightGrey">#D3D3D3</color>
+    <color name="duskYellow">#ffd45c</color>
 </resources>
