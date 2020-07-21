@@ -1,7 +1,6 @@
 package com.example.gamerapp.Tabs;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -22,8 +23,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.gamerapp.Controller.LoginActivity;
-import com.example.gamerapp.Controller.SignUp;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
@@ -32,9 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +43,10 @@ import java.util.Map;
 public class ReviewWrite extends Fragment {
 EditText edittxt_Wreview;
 Button   btnsubmitreview;
+float  getrating;
+    private RatingBar Wreview_rBar;
+    private TextView tViewRating;
+    private Button btnrating;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -101,6 +101,18 @@ Button   btnsubmitreview;
          isvalid();
      }
  });
+        Wreview_rBar = (RatingBar) root.findViewById(R.id.wr_ratingBar1 );
+        tViewRating = (TextView) root.findViewById(R.id.lbl_write_rating);
+
+       Wreview_rBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+           @Override
+           public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+               int noofstars = Wreview_rBar.getNumStars();
+                getrating = Wreview_rBar.getRating();
+               System.out.println(getrating);
+               tViewRating.setText("Rating: "+getrating+"/"+noofstars);
+           }
+       });
         return root;
     }
 
@@ -170,6 +182,7 @@ Button   btnsubmitreview;
                 params.put("writegameid", Constants.CUURENT_GAMEID);
                 params.put("writereview", edittxt_Wreview.getText().toString());
                 params.put("reviewdate", currentdatetime());
+                params.put("rating",String.valueOf(getrating));
                 params.put("uid",String.valueOf(Constants.CUURENT_USERID));
 
 

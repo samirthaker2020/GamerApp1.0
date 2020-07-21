@@ -42,8 +42,8 @@
 
             <EditText
                 android:id="@+id/edittext_review"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="371dp"
+                android:layout_height="139dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
@@ -54,6 +54,26 @@
                 android:maxLines="10"
                 android:minLines="10" />
 
+            <TextView
+                android:id="@+id/lbl_write_rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Rating: 0.0/5" />
+
+            <RatingBar
+                android:id="@+id/wr_ratingBar1"
+                style="@android:style/Widget.DeviceDefault.Light.RatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="20dp"
+                android:minHeight="10dip"
+                android:numStars="5"
+                android:rating="2"
+                android:theme="@style/RatingBar" />
             <Button
                 android:id="@+id/btn_Wreview"
                 android:layout_width="match_parent"
