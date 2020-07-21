@@ -1,6 +1,7 @@
 package com.example.gamerapp.Tabs;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.gamerapp.Controller.GameDetails;
+import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
@@ -155,8 +159,16 @@ float  getrating;
 
 
                                 singlemsg("SUCESS",obj.getString("message"));
-                               edittxt_Wreview.setText("");
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    public void run() {
+                                        // yourMethod();
+                                        getActivity().finish();
+                                        Intent intent = new Intent(getActivity(), GameDetails.class);
 
+                                        startActivity(intent);
+                                    }
+                                }, 2000);
 
 
                             }
