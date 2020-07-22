@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class ReadReview implements Serializable {
 
    public int reviewid,gameid,uid;
-   public String comment,reviewdate,reviewby,readreview_userimage;
+   public float readreview_displayratings;
+   public String comment,reviewdate,reviewby,readreview_userimage,readreview_lblrating;
 
     public int getReviewid() {
         return reviewid;
@@ -15,17 +16,35 @@ public class ReadReview implements Serializable {
         return readreview_userimage;
     }
 
+    public float getReadreview_displayratings() {
+        return readreview_displayratings;
+    }
+
     @Override
     public String toString() {
         return "ReadReview{" +
                 "reviewid=" + reviewid +
                 ", gameid=" + gameid +
                 ", uid=" + uid +
+                ", readreview_displayratings=" + readreview_displayratings +
                 ", comment='" + comment + '\'' +
                 ", reviewdate='" + reviewdate + '\'' +
                 ", reviewby='" + reviewby + '\'' +
                 ", readreview_userimage='" + readreview_userimage + '\'' +
+                ", readreview_lblrating='" + readreview_lblrating + '\'' +
                 '}';
+    }
+
+    public void setReadreview_displayratings(float readreview_displayratings) {
+        this.readreview_displayratings = readreview_displayratings;
+    }
+
+    public String getReadreview_lblrating() {
+        return readreview_lblrating;
+    }
+
+    public void setReadreview_lblrating(String readreview_lblrating) {
+        this.readreview_lblrating = readreview_lblrating;
     }
 
     public void setReadreview_userimage(String readreview_userimage) {

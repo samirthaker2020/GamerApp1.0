@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.gamerapp.Modal.GameList;
@@ -55,6 +56,8 @@ public class ReadReviewAdapter extends BaseAdapter {
             viewItem.r_comment=(TextView) convertView.findViewById(R.id.review_comment);
             viewItem.r_by=(TextView) convertView.findViewById(R.id.review_by);
             viewItem.r_date=(TextView) convertView.findViewById(R.id.review_date);
+            viewItem.r_lblrating=(TextView) convertView.findViewById(R.id.lbl_readreview_rating);
+            viewItem.read_ratings=(RatingBar) convertView.findViewById(R.id.readreview_ratingBar1);
             viewItem.r_userimage=(ImageView) convertView.findViewById(R.id.readreview_user_image);
             convertView.setTag(viewItem);
 
@@ -67,13 +70,16 @@ public class ReadReviewAdapter extends BaseAdapter {
         viewItem.r_comment.setText("Review::"+" "+ReviewArrayList.get(position).getComment());
         viewItem.r_date.setText("On::"+" "+ReviewArrayList.get(position).getReviewdate());
         viewItem.r_by.setText(ReviewArrayList.get(position).getReviewby());
+        viewItem.read_ratings.setRating((float) ReviewArrayList.get(position).getReadreview_displayratings());
+        viewItem.r_lblrating.setText("Rating: "+ReviewArrayList.get(position).getReadreview_lblrating()+"/"+"5.0");
        viewItem.r_userimage.setImageBitmap(ProfileImage.StringToBitMap(ReviewArrayList.get(position).getReadreview_userimage()));
         return convertView;
     }
 }
 class ReviewViewItem
 {
-     TextView r_comment,r_date,r_by;
+     TextView r_comment,r_date,r_by,r_lblrating;
      ImageView r_userimage;
+     RatingBar read_ratings;
 
 }

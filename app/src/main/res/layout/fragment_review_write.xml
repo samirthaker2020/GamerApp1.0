@@ -72,7 +72,7 @@
                 android:layout_marginRight="20dp"
                 android:minHeight="10dip"
                 android:numStars="5"
-                android:rating="2"
+                android:rating="0"
                 android:theme="@style/RatingBar" />
             <Button
                 android:id="@+id/btn_Wreview"

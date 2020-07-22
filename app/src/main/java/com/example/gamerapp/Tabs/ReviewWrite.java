@@ -124,9 +124,9 @@ float  getrating;
     {
 
         //checking if email is empty
-        if (TextUtils.isEmpty(edittxt_Wreview.getText().toString()))
+        if (TextUtils.isEmpty(edittxt_Wreview.getText().toString()) || getrating==0)
         {
-            edittxt_Wreview.setError("Please enter your review");
+            edittxt_Wreview.setError("Please enter your review and select stars");
             edittxt_Wreview.requestFocus();
 
             btnsubmitreview.setEnabled(true);

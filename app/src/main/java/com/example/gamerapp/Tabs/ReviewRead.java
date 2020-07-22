@@ -197,15 +197,20 @@ initsampledata();
                                 String fname=jsonObject.getString("fname");
                                 String lname=jsonObject.getString("lname");
                                 String readreview_userimg=jsonObject.getString("profilepic");
+                                double rating=jsonObject.getDouble("gamerating");
                                 samples.comment=comment;
                                 samples.reviewby=fname+"."+lname;
                                 samples.reviewdate=reviewdate;
                                 samples.readreview_userimage=readreview_userimg;
+                                samples.readreview_displayratings= (float) rating;
+                                samples.readreview_lblrating= String.valueOf(rating);
                             }else {
                                 samples.comment="No data";
                                 samples.reviewby= " No data";
                                 samples.reviewdate=" No data";
                                 samples.readreview_userimage="";
+                                samples.readreview_displayratings=0;
+                                samples.readreview_lblrating="No data" ;
                             }
 
 
