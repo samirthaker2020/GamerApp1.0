@@ -133,11 +133,11 @@ float  getrating;
             return;
         }else {
 
-        registerUser();
+       writereview();
         }
     }
 
-    private void registerUser() {
+    private void writereview() {
 
 
         //Call our volley library

@@ -6,14 +6,10 @@ public class GameList implements Serializable {
 
    public String gamename,gameimage,gametrailer;
     public  int gameid;
+    public float lstgame_rating;
 
-
-    public String getGametrailer() {
-        return gametrailer;
-    }
-
-    public void setGametrailer(String gametrailer) {
-        this.gametrailer = gametrailer;
+    public float getLstgame_rating() {
+        return lstgame_rating;
     }
 
     @Override
@@ -23,8 +19,22 @@ public class GameList implements Serializable {
                 ", gameimage='" + gameimage + '\'' +
                 ", gametrailer='" + gametrailer + '\'' +
                 ", gameid=" + gameid +
+                ", lstgame_rating=" + lstgame_rating +
                 '}';
     }
+
+    public void setLstgame_rating(float lstgame_rating) {
+        this.lstgame_rating = lstgame_rating;
+    }
+
+    public String getGametrailer() {
+        return gametrailer;
+    }
+
+    public void setGametrailer(String gametrailer) {
+        this.gametrailer = gametrailer;
+    }
+
 
     public String getGamename() {
         return gamename;

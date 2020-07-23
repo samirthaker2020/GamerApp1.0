@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +66,7 @@ public class GameListAdapter extends BaseAdapter {
             viewItem.gamepic=(ImageView) convertView.findViewById(R.id.imageView_gamepic);
             viewItem.btn_trailer=(ImageButton) convertView.findViewById(R.id.btn_trailer);
             viewItem.txtlearnmore=(TextView) convertView.findViewById(R.id.txt_learnmore);
+            viewItem.lstgame_rating=(RatingBar) convertView.findViewById(R.id.gamelist_ratingBar1);
             convertView.setTag(viewItem);
 
 
@@ -73,7 +75,7 @@ public class GameListAdapter extends BaseAdapter {
         {
             viewItem = (ViewItem) convertView.getTag();
         }
-
+        viewItem.lstgame_rating.setRating(GameArrayList.get(position).getLstgame_rating());
         viewItem.gamename.setText(" "+GameArrayList.get(position).getGamename());
         Picasso
                 .get()
@@ -118,5 +120,6 @@ class ViewItem
     ImageView gamepic;
     ImageButton btn_trailer;
     TextView txtlearnmore;
+    RatingBar lstgame_rating;
 
 }

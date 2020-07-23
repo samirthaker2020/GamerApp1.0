@@ -172,6 +172,7 @@ public class HomeFragment1 extends Fragment {
                             samples.gameid=jsonObject.getInt("gameid");
                             samples.gameimage=jsonObject.getString("gamepic");
                             samples.gametrailer=jsonObject.getString("gametrailer");
+                            samples.lstgame_rating= (float) jsonObject.getDouble("gamelistrating");
                             //Storing Subject name in subject list.
                           //  samples.batchname = jsonObject.getString("batchname");
 

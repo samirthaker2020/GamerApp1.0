@@ -4,26 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <EditText
         android:id="@+id/editText_gamename"
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
+        android:layout_width="269dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
         android:background="@color/design_default_color_on_primary"
         android:ems="10"
         android:enabled="false"
         android:gravity="center|center_vertical"
         android:inputType="textPersonName"
         android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
         android:text="Name"
         android:textAlignment="textStart"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="14sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView_gamepic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/btn_trailer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.12" />
@@ -32,6 +34,8 @@
         android:id="@+id/imageView_gamepic"
         android:layout_width="match_parent"
         android:layout_height="220dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/border"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/txt_learnmore"
@@ -42,8 +46,8 @@
 
     <TextView
         android:id="@+id/txt_learnmore"
-        android:layout_width="167dp"
-        android:layout_height="39dp"
+        android:layout_width="123dp"
+        android:layout_height="40dp"
         android:gravity="center|center_vertical"
         android:paddingRight="30dp"
         android:text="Learn More  >"
@@ -52,22 +56,34 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editText_gamename"
         app:layout_constraintTop_toBottomOf="@+id/imageView_gamepic" />
 
     <ImageButton
         android:id="@+id/btn_trailer"
         style="@android:style/Widget.DeviceDefault.ImageButton"
-        android:layout_width="49dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="175dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:background="@color/design_default_color_background"
         android:contentDescription="TODO"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/txt_learnmore"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_gamepic"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_gamepic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText_gamename"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_trailer_foreground" />
+
+    <RatingBar
+        android:id="@+id/gamelist_ratingBar1"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+        android:layout_width="201dp"
+        android:layout_height="37dp"
+        android:numStars="5"
+        android:paddingStart="20dp"
+        android:rating="3.8"
+        android:theme="@style/RatingBar"
+        app:layout_constraintEnd_toStartOf="@+id/txt_learnmore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_gamepic" />
 </androidx.constraintlayout.widget.ConstraintLayout>
