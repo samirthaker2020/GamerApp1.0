@@ -122,6 +122,7 @@ public class MyLocation   extends Fragment implements OnMapReadyCallback    {
             e.printStackTrace();
         }
             getlocationdata();
+
         return root;
     }
 
@@ -169,7 +170,7 @@ public class MyLocation   extends Fragment implements OnMapReadyCallback    {
             String state = addresses.get(0).getAdminArea();
             String country = addresses.get(0).getCountryName();
             String postalcode=addresses.get(0).getPostalCode();
-            fulladd = city+", "+state+", "+country+","+postalcode;
+            fulladd = city;
             lati=latitude;
             longi=longitude;
             cordinates.setText("Your current location is:\n"+fulladd);
@@ -189,7 +190,7 @@ public class MyLocation   extends Fragment implements OnMapReadyCallback    {
             LatLng sydney = new LatLng(latitude,longitude);
            mMap.addMarker(new MarkerOptions().position(sydney).title(fulladd));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 17));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16));
 
     }
 }
