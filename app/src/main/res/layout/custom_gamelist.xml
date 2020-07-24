@@ -63,10 +63,11 @@
         style="@android:style/Widget.DeviceDefault.ImageButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:text="OK"
         android:layout_marginTop="10dp"
         android:background="@color/design_default_color_background"
         android:contentDescription="TODO"
-        android:textAlignment="center"
+
         app:layout_constraintBottom_toTopOf="@+id/imageView_gamepic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText_gamename"

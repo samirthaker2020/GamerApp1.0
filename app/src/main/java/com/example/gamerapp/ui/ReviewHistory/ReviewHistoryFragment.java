@@ -1,11 +1,14 @@
 package com.example.gamerapp.ui.ReviewHistory;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,11 +58,37 @@ public class ReviewHistoryFragment extends Fragment {
         lstreviewhistory = (ListView) root.findViewById(R.id.lst_reviewhistory);
 initsampledata();
 
+lstreviewhistory.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+      //  Toast.makeText(getActivity(),"long press", Toast.LENGTH_LONG).show();
+        DeleteDialogbox();
+        return false;
+    }
+});
 
         return root;
     }
 
+public void DeleteDialogbox()
 
+{
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    builder.setMessage("Are you sure you want to delete?")
+            .setCancelable(false)
+            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                   getActivity().finish();
+                }
+            })
+            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+    AlertDialog alert = builder.create();
+    alert.show();
+}
 
     private void initsampledata()
     {
