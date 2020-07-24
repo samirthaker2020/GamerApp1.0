@@ -28,6 +28,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDg3fQSGjwenI7V7inrngqDxMDOLeON3Pc" />
+
         <activity android:name=".Controller.RecoverPassword" />
         <activity android:name=".ForgotPassword"></activity>
         <activity

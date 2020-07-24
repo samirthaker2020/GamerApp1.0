@@ -21,26 +21,36 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gamerapp.Controller.MainPage;
 import com.example.gamerapp.Others.GPSTracker;
 import com.example.gamerapp.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MyLocation#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyLocation   extends Fragment    {
+public class MyLocation   extends Fragment implements OnMapReadyCallback    {
     private static final int REQUEST_CODE_PERMISSION = 2;
     String mPermission = Manifest.permission.ACCESS_FINE_LOCATION;
-
-    // GPSTracker class
+    double latitude;
+    double longitude;
+    private GoogleMap mMap;
+    private double lati,longi;
+    private String fulladd;
+    private int stuff=0;    // GPSTracker class
     GPSTracker gps;
     private PackageManager MockPackageManager;
      TextView cordinates;
@@ -91,6 +101,14 @@ public class MyLocation   extends Fragment    {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_my_location, container, false);
         cordinates=root.findViewById(R.id.cod);
+        // Set title bar
+        ((MainPage) getActivity())
+                .setActionBarTitle("Your Location");
+
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         try {
             if (ActivityCompat.checkSelfPermission(getActivity(), mPermission)
                     != MockPackageManager.PERMISSION_GRANTED) {
@@ -115,12 +133,16 @@ public class MyLocation   extends Fragment    {
         // check if GPS enabled
         if(gps.canGetLocation()){
 
-            double latitude = gps.getLatitude();
-            double longitude = gps.getLongitude();
+           latitude = gps.getLatitude();
+             longitude = gps.getLongitude();
 
             // \n is for new line
-            Toast.makeText(getContext(), "Your Location is - \nLat: "
+          /*  Toast.makeText(getContext(), "Your Location is - \nLat: "
                     + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+            cordinates.setText("Your Location is - \nLat: "
+                    + latitude + "\nLong: " + longitude); */
+            //finding address
+            setAddress(latitude,longitude);
         }else{
             // can't get location
             // GPS or Network is not enabled
@@ -128,5 +150,46 @@ public class MyLocation   extends Fragment    {
             gps.showSettingsAlert();
         }
     }
+    private void setAddress(Double latitude, Double longitude) {
 
+        Geocoder geocoder;
+        List<Address>  addresses = null;
+        geocoder = new Geocoder(getActivity(), Locale.getDefault());
+
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (addresses.size() > 0) {
+            Log.d("max", " " + addresses.get(0).getMaxAddressLineIndex());
+
+            String city = addresses.get(0).getAddressLine(0);
+            String state = addresses.get(0).getAdminArea();
+            String country = addresses.get(0).getCountryName();
+            String postalcode=addresses.get(0).getPostalCode();
+            fulladd = city+", "+state+", "+country+","+postalcode;
+            lati=latitude;
+            longi=longitude;
+            cordinates.setText("Your current location is:\n"+fulladd);
+            Log.d("fulladd",fulladd);
+        }
+    }
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
+
+
+            // Add a marker in Sydney and move the camera
+            LatLng sydney = new LatLng(latitude,longitude);
+           mMap.addMarker(new MarkerOptions().position(sydney).title(fulladd));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 17));
+
+    }
 }
