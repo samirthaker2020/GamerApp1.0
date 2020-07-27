@@ -3,6 +3,7 @@ package com.example.gamerapp.ui.ReviewHistory;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -29,6 +32,9 @@ import com.example.gamerapp.Adapter.ReviewHistoryAdapter;
 import com.example.gamerapp.Modal.ReadReview;
 import com.example.gamerapp.Modal.ReviewHistory;
 import com.example.gamerapp.Others.Constants;
+import com.example.gamerapp.Others.DeleteReview;
+import com.example.gamerapp.Others.DialogMessage;
+import com.example.gamerapp.Others.VolleySingleton;
 import com.example.gamerapp.R;
 import com.example.gamerapp.Tabs.ReviewRead;
 
@@ -37,7 +43,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.example.gamerapp.Others.DialogMessage.singlemsg;
 
 public class ReviewHistoryFragment extends Fragment {
 
@@ -48,7 +58,7 @@ public class ReviewHistoryFragment extends Fragment {
 
     // Server Http URL
     String HTTP_URL = Constants.URL_REVIEW_HISTORY;
-
+    String delete_URL = Constants.URL_DELETEREVIEW;
     // String to hold complete JSON response object.
     String FinalJSonObject ;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -61,8 +71,10 @@ initsampledata();
 lstreviewhistory.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-      //  Toast.makeText(getActivity(),"long press", Toast.LENGTH_LONG).show();
-        DeleteDialogbox();
+        ReviewHistory rv= ListCustomReviewHistory.get(position);
+      //  Toast.makeText(getActivity(),String.valueOf(rv.reviewid), Toast.LENGTH_LONG).show();
+      //  System.out.println(ListCustomReviewHistory.get(position).getReviewid());
+       DeleteDialogbox(rv.reviewid);
         return false;
     }
 });
@@ -70,7 +82,7 @@ lstreviewhistory.setOnItemLongClickListener(new AdapterView.OnItemLongClickListe
         return root;
     }
 
-public void DeleteDialogbox()
+public void DeleteDialogbox(final int rid)
 
 {
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -78,7 +90,8 @@ public void DeleteDialogbox()
             .setCancelable(false)
             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                   getActivity().finish();
+
+                     deletereview(rid);
                 }
             })
             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -180,16 +193,19 @@ public void DeleteDialogbox()
                                 String reviewdate=jsonObject.getString("revdatetime");
                                 String gamename=jsonObject.getString("gamename");
                                 double rating=jsonObject.getDouble("gamerating");
+                                int reviewid=jsonObject.getInt("reviewid");
 
                                 samples.comment=comment;
                               samples.gamename=gamename;
                                 samples.reviewdate=reviewdate;
                                 samples.rating=rating;
+                                samples.reviewid=reviewid;
                             }else {
                                 samples.comment="No data";
                                 samples.reviewby= " No data";
                                 samples.reviewdate=" No data";
                                 samples.rating=0;
+                                samples.reviewid=0;
                             }
 
 
@@ -235,6 +251,50 @@ public void DeleteDialogbox()
         }
     }
 
+    public void deletereview(final int rid) {
+
+        //Call our volley library
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,delete_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+//                            Toast.makeText(getApplicationContext(),response.toString(), Toast.LENGTH_SHORT).show();
+
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.getBoolean("error")) {
+
+                                DialogMessage.singlemsg("Invalid",obj.getString("message"),getActivity(),false);
+
+                            } else {
+
+                               DialogMessage.singlemsg("SUCESS",obj.getString("message"),getActivity(),true);
+                               initsampledata();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(),"Connection Error"+error, Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("rid", String.valueOf(rid));
+
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
 
 
 }
