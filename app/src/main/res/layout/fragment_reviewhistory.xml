@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".ui.ReviewHistory.ReviewHistoryFragment">
 
+    <SearchView
+        android:id="@+id/rh_searchbar1"
+        android:layout_width="388dp"
+        android:layout_height="47dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/border" />
+
     <ListView
         android:id="@+id/lst_reviewhistory"
         android:layout_width="match_parent"

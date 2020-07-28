@@ -25,5 +25,6 @@ public class Constants {
     public static final String URL_WRITEREVIEW = ROOT_URL+"writereview.php";
     public static final String URL_READREVIEW    = ROOT_URL+"readreview.php";
     public static final String URL_DELETEREVIEW    = ROOT_URL+"deleterewiew.php";
+    public static final String URL_RH_SEARCH = ROOT_URL+"searchreviewhistory.php";
     public static final String URL_IMAGES=  "http://www.samirthaker.info/gamerapp/assets/images/";
 }
