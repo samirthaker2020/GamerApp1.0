@@ -95,7 +95,7 @@ lstreviewhistory.setOnItemLongClickListener(new AdapterView.OnItemLongClickListe
         public boolean onQueryTextChange(String newText) {
             if(TextUtils.isEmpty(newText))
             {
-                 
+
                  initsampledata();
          //        Toast.makeText(getActivity(),newText,Toast.LENGTH_SHORT).show();
             }

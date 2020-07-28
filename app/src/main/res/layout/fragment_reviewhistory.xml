@@ -13,7 +13,7 @@
         android:layout_height="47dp"
         android:layout_margin="10dp"
         android:layout_marginStart="10dp"
-        android:background="@drawable/border" />
+        android:background="@drawable/mysearch" />
 
     <ListView
         android:id="@+id/lst_reviewhistory"

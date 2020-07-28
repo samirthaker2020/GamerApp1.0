@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment1">
 
+    <SearchView
+        android:id="@+id/gamelist_searchbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/mysearch" />
+
     <ListView
         android:id="@+id/lstgame"
         android:layout_width="match_parent"
