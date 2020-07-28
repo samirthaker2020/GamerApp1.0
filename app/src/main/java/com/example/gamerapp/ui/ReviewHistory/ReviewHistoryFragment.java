@@ -101,10 +101,11 @@ lstreviewhistory.setOnItemLongClickListener(new AdapterView.OnItemLongClickListe
             }
             else {
           //      Toast.makeText(getActivity(),newText,Toast.LENGTH_SHORT).show();
+
                 searchdata(newText);
 
             }
-            return false;
+            return true;
         }
     });
         return root;

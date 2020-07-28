@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -47,7 +48,7 @@ public class HomeFragment1 extends Fragment {
     List<GameList> CustomGameList1; //CustomSampleNamesList1 for search bar;
     // Server Http URL
     String HTTP_URL = Constants.URL_RH_GAME_SEARCH;
-
+ProgressBar progressloader;
     // String to hold complete JSON response object.
     String FinalJSonObject;
     private HomeViewModel1 homeViewModel;
@@ -71,6 +72,8 @@ public class HomeFragment1 extends Fragment {
         });
         lstgamelist = (ListView) root.findViewById(R.id.lstgame);
         gamelistsearch1 = (SearchView) root.findViewById(R.id.gamelist_searchbar1);
+        progressloader=(ProgressBar) root.findViewById(R.id.gamelist_loader);
+
         initsampledata();
         lstgamelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,13 +95,13 @@ public class HomeFragment1 extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 initsampledata();
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 gamesearch(newText);
-                return false;
+                return true;
             }
         });
         return root;
@@ -153,6 +156,7 @@ public class HomeFragment1 extends Fragment {
         protected void onPreExecute() {
 
             super.onPreExecute();
+            progressloader.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -211,6 +215,8 @@ public class HomeFragment1 extends Fragment {
 
         @Override
         protected void onPostExecute(Void result) {
+            // Hiding progress bar after all JSON loading done.
+            progressloader.setVisibility(View.GONE);
             // After all done loading set complete CustomSubjectNamesList with application context to ListView adapter.
             GameListAdapter adapter = new GameListAdapter(context, (ArrayList<GameList>) CustomGameList);
             // lstgamelist.setDivider(new ColorDrawable(0x99F10529));   //0xAARRGGBB
@@ -218,8 +224,6 @@ public class HomeFragment1 extends Fragment {
             // Setting up all data into ListView.
             lstgamelist.setAdapter(adapter);
 
-            // Hiding progress bar after all JSON loading done.
-            // progressBar.setVisibility(View.GONE);
 
         }
     }
@@ -273,6 +277,7 @@ public class HomeFragment1 extends Fragment {
         protected void onPreExecute() {
 
             super.onPreExecute();
+            progressloader.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -331,6 +336,8 @@ public class HomeFragment1 extends Fragment {
 
         @Override
         protected void onPostExecute(Void result) {
+            // Hiding progress bar after all JSON loading done.
+            progressloader.setVisibility(View.GONE);
             // After all done loading set complete CustomSubjectNamesList with application context to ListView adapter.
             GameListAdapter adapter = new GameListAdapter(context, (ArrayList<GameList>) CustomGameList1);
             // lstgamelist.setDivider(new ColorDrawable(0x99F10529));   //0xAARRGGBB
@@ -338,8 +345,7 @@ public class HomeFragment1 extends Fragment {
             // Setting up all data into ListView.
             lstgamelist.setAdapter(adapter);
 
-            // Hiding progress bar after all JSON loading done.
-            // progressBar.setVisibility(View.GONE);
+
 
         }
     }
