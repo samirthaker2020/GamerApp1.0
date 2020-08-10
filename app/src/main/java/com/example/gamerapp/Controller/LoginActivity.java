@@ -188,7 +188,7 @@ EditText userPassword_input;
                             if (obj.getBoolean("error")) {
                                 //  Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                 singlemsg("Invalid",obj.getString("message"),LoginActivity.this,false);
-                                emailId_input.setText("");
+
                                 userPassword_input.setText("");
                             } else {
 

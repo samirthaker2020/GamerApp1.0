@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -41,7 +42,7 @@ public class HomeFragment extends Fragment {
     private ListView lstgamecategory;  //lstsample
     // Creating List of Subject class.
     List<GameCategory> CustomGameCategory; //CustomSampleNamesList;
-
+    ProgressBar Homeprogressloader;
     // Server Http URL
     String HTTP_URL = Constants.URL_GAMECATEGORY;
 
@@ -60,7 +61,7 @@ public class HomeFragment extends Fragment {
         ((MainPage) getActivity()).getSupportActionBar().setTitle("Game Categories");
         lstgamecategory = (ListView) root.findViewById(R.id.lstcategory);
         initcategorydata();
-
+        Homeprogressloader=(ProgressBar) root.findViewById(R.id.Homeprogressbar);
 
 
        lstgamecategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -136,7 +137,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-
+            Homeprogressloader.setVisibility(View.VISIBLE);
             super.onPreExecute();
         }
 
@@ -205,7 +206,7 @@ public class HomeFragment extends Fragment {
             lstgamecategory.setAdapter(adapter);
 
             // Hiding progress bar after all JSON loading done.
-            // progressBar.setVisibility(View.GONE);
+             Homeprogressloader.setVisibility(View.GONE);
 
         }
     }

@@ -2,6 +2,7 @@ package com.example.gamerapp.Controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -86,6 +87,7 @@ public class MainPage extends AppCompatActivity   implements NavigationView.OnNa
 
                 SharedPref.getInstance(getApplicationContext()).logout();
                 finish();
+
                 return true;
 
             default:
