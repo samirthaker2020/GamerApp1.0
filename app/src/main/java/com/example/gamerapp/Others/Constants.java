@@ -28,4 +28,5 @@ public class Constants {
     public static final String URL_RH_SEARCH = ROOT_URL+"searchreviewhistory.php";
     public static final String URL_RH_GAME_SEARCH = ROOT_URL+"searchgamelist.php";
     public static final String URL_IMAGES=  "http://www.samirthaker.info/gamerapp/assets/images/";
+    public static final String URL_USER_MANUAL="http://www.samirthaker.info/gamerapp/assets/files/gamerapp_manual.pdf";
 }

@@ -78,7 +78,7 @@ TextView email2,customercare,nh_weblink,usermanual;
         nh_weblink=root.findViewById(R.id.nh_weblink);
         nh_weblink.setText(Html.fromHtml("<a href=http://www.google.com> www.gamerapp.com "));
         nh_weblink.setMovementMethod(LinkMovementMethod.getInstance());
-        usermanual.setText(Html.fromHtml("<a href=http://www.google.com> User Manual v1.0"));
+        usermanual.setText(Html.fromHtml("<a href=" +Constants.URL_USER_MANUAL+"> User Manual v1.0"));
         usermanual.setMovementMethod(LinkMovementMethod.getInstance());
         email2.setOnClickListener(new View.OnClickListener() {
             @Override
