@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.gamerapp.Controller.MainPage;
+import com.example.gamerapp.Others.Constants;
 import com.example.gamerapp.R;
 import com.example.gamerapp.ui.home.HomeFragment;
 
@@ -74,9 +75,9 @@ public class AboutUs extends Fragment {
         tc_policy=root.findViewById(R.id.privacypolicy);
         tc_eula=root.findViewById(R.id.eula);
         website=root.findViewById(R.id.website);
-        tc_condition.setText(Html.fromHtml("<a href=http://www.google.com> Terms & Conditions "));
+        tc_condition.setText(Html.fromHtml("<a href= "+ Constants.URL_TC +"> Terms & Conditions "));
         tc_condition.setMovementMethod(LinkMovementMethod.getInstance());
-        tc_policy.setText(Html.fromHtml("<a href=http://www.google.com> Privacy Policy "));
+        tc_policy.setText(Html.fromHtml("<a href="+Constants.URL_PP+"> Privacy Policy "));
         tc_policy.setMovementMethod(LinkMovementMethod.getInstance());
         tc_eula.setText(Html.fromHtml("<a href=http://www.google.com> End User License Agreement (EULA) "));
         tc_eula.setMovementMethod(LinkMovementMethod.getInstance());

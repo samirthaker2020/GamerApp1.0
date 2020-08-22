@@ -29,4 +29,7 @@ public class Constants {
     public static final String URL_RH_GAME_SEARCH = ROOT_URL+"searchgamelist.php";
     public static final String URL_IMAGES=  "http://www.samirthaker.info/gamerapp/assets/images/";
     public static final String URL_USER_MANUAL="http://www.samirthaker.info/gamerapp/assets/files/gamerapp_manual.pdf";
+    public static final String URL_EULAL="http://www.samirthaker.info/gamerapp/assets/files/gamerapp_eula.pdf";
+    public static final String URL_TC="http://www.samirthaker.info/gamerapp/assets/files/gamerapp_tc.pdf";
+    public static final String URL_PP="http://www.samirthaker.info/gamerapp/assets/files/gamerapp_pp.pdf";
 }
