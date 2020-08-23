@@ -79,7 +79,7 @@ public class AboutUs extends Fragment {
         tc_condition.setMovementMethod(LinkMovementMethod.getInstance());
         tc_policy.setText(Html.fromHtml("<a href="+Constants.URL_PP+"> Privacy Policy "));
         tc_policy.setMovementMethod(LinkMovementMethod.getInstance());
-        tc_eula.setText(Html.fromHtml("<a href=http://www.google.com> End User License Agreement (EULA) "));
+        tc_eula.setText(Html.fromHtml("<a href= "+Constants.URL_EULA+"> End User License Agreement (EULA) "));
         tc_eula.setMovementMethod(LinkMovementMethod.getInstance());
         website.setText(Html.fromHtml("<a href=http://www.google.com> www.gamerapp.com "));
         website.setMovementMethod(LinkMovementMethod.getInstance());
