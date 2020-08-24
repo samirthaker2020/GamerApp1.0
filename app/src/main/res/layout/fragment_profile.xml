@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@color/ic_appicon_background"
     tools:context=".ui.Profile.ProfileFragment">
@@ -38,20 +38,18 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
-
-
-
     <TextView
         android:id="@+id/txtprofile_fname"
         android:layout_width="148dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="17dp"
 
         android:gravity="center|left"
         android:text="First Name:"
         android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_fname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_image" />
 
@@ -59,13 +57,14 @@
         android:id="@+id/txtprofile_emailid"
         android:layout_width="148dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:gravity="center|left"
         android:text="Date Of Birth:"
         android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editText_dob"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_dob"
         app:layout_constraintVertical_bias="0.035" />
@@ -75,6 +74,7 @@
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/border"
         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:ems="10"
@@ -93,14 +93,15 @@
         android:id="@+id/txtprofile_contactno"
         android:layout_width="148dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:gravity="center|left"
-        android:text="Contact No:"
         android:inputType="numberSigned"
+        android:text="Contact No:"
         android:textColor="@color/cardview_dark_background"
 
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_contactno"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_lname" />
 
@@ -126,6 +127,7 @@
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/border"
         android:ems="10"
         android:enabled="false"
@@ -146,6 +148,7 @@
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/border"
         android:ems="10"
         android:enabled="false"
@@ -162,13 +165,14 @@
         android:id="@+id/txtprofile_lname"
         android:layout_width="148dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:gravity="center|left"
 
         android:text="Last Name:"
         android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_lname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_fname" />
 
@@ -177,10 +181,11 @@
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginTop="192dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/border"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:ems="10"
         android:enabled="false"
-        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:fontFamily="monospace"
         android:inputType="textPersonName"
         android:text="Name"
@@ -195,12 +200,13 @@
         android:id="@+id/txtprofile_dob"
         android:layout_width="148dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="12dp"
         android:gravity="center|left"
         android:text="Email:"
         android:textColor="@color/cardview_dark_background"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/editText_email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtprofile_contactno" />
 
@@ -246,6 +252,7 @@
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/border"
         android:ems="10"
         android:enabled="false"
